@@ -1,0 +1,167 @@
+
+        * {
+            box-sizing: border-box;
+        }
+
+        @font-face {
+            font-family: 'Inter';
+            src: url("./Inter-VariableFont_slnt\,wght.ttf");
+        }
+
+        body {
+            font-family: 'Inter';
+            font-style: normal;
+            margin: 0;
+            padding: 0;
+        }
+
+        .account {
+            width: 111px;
+            height: 45px;
+            background: #05427B;
+            border-radius: 9px;
+            color: white;
+            font-size: 21px;
+            margin-top: -17px;
+
+        }
+
+        .container {
+            width: 70%;
+            margin: auto;
+        }
+
+        header {
+            text-align: center;
+            font-size: 35px;
+            margin-top: 26px;
+            margin-bottom: 19px;
+        }
+
+        .circle {
+            float: left;
+            /* height: 57px; */
+            width: 205px;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            display: flex; 
+            justify-content: end;
+        }
+
+        li {
+            display: inline;
+        }
+
+        li a {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 30px;
+            display: block;
+            text-align: center;
+            padding: 15px 16px;
+            text-decoration: none;
+            color: black;
+            margin-left: 30px;
+            transition: 0.5s ease-in-out;
+        }
+
+        li a:hover:not(.not) {
+            background-color: #BEBEBE;
+        }
+
+        footer {
+            background: #735A43;
+            height: 94px;
+            padding: 10px;
+            text-align: center;
+            color: white;
+        }
+
+        .container1 {
+            display: flex;
+            margin-bottom: 74px;
+        }
+
+        .sidebar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            background: #FFCCCC;
+            height: 650px;
+            margin-right: 15px;
+        }
+
+        .section1 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #BEBEBE;
+            height: 368px;
+            margin-bottom: 16px
+        }
+
+        .container2 {
+            width: 70%;
+        }
+
+        .section2 {
+            display: flex;
+            background: #BEBEBE;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+            margin-right: 16px;
+            height: 269px;
+        }
+
+        .section3 {
+            width: 40%;
+            background: #BEBEBE;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 269px;
+        }
+
+        .container3 {
+            display: flex;
+        }
+
+        .text_center {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 48px;
+
+            color: #000000;
+
+        }
+
+        .text1 {
+            float: left;
+            font-size: 24px;
+        }
+
+        .text2 {
+            float: right;
+            font-size: 26px;
+            font-weight: 600;
+            padding-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+
+            nav,
+            article {
+                width: 100%;
+                height: auto;
+            }
+        }
+    
