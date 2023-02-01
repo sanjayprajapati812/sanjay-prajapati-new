@@ -10,10 +10,13 @@
 
 .container {
     max-width: 1350px;
+    margin: auto;
 }
 
 .customWidth {
     max-width: 1550px;
+    width: 100%;
+    margin: auto;
 }
 
 .bgBlue {
