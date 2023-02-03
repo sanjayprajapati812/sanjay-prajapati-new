@@ -67,9 +67,12 @@ th {
 
 .edit {
     position: absolute;
-    top: 50px;
-    right: 0;
+    top: 103px;
+    right: -49px;
     background-color: white;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    padding: 14px;
+    font-size: 14px;
 }
 
 td {
@@ -380,9 +383,47 @@ td {
     color: #5630D3;
     margin-bottom: 0;
 }
+.jane_cap_txt{
+    display: inline;
+}
 
 
 @media (max-width: 991.98px) {
+
+    .edit{
+        display: none;
+    }
+
+    .just_con_start{
+        justify-content: flex-start !important;
+    }
+
+    .just_con_even{
+        justify-content: space-evenly !important;
+    }
+
+    .Conversations_ms_set{
+        margin:0px !important;
+    }
+
+    .p_s_set {
+        padding-left: 0px !important;
+    }
+
+    .res_wrap{
+        flex-wrap: wrap;
+    }
+
+    .work_hour_div{
+        width: 100%;
+    }
+    .search_btn{
+        display: none;
+    }
+
+    .jane_cap_txt{
+        display: none;
+    }
 
     .body-pd {
         padding-left: calc(var(--nav-width) + 100px)

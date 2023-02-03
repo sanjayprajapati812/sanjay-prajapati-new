@@ -1,230 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
     <link rel="stylesheet" href="./css/style.css" />
     <title>Task-5</title>
-  </head>
+</head>
 
-  <body id="body-pd">
+<body id="body-pd">
     <header class="header" id="header"></header>
     <div class="l-navbar" id="nav-bar">
-      <nav class="nav">
-        <div>
-          <a href="#" class="nav_logo">
-            <img src="./images/logohere.png" />
-            <span class="nav_logo-name">logohere</span>
-          </a>
-          <div class="nav_list">
-            <a href="#" class="nav_link active">
-              <i class="bx bx-grid-alt nav_icon"></i>
-              <span class="nav_name">Dashboard</span>
-            </a>
-            <a href="#" class="nav_link">
-              <i class="bx bxs-calendar"></i>
-              <span class="nav_name">Calendar</span>
-            </a>
-            <a href="#" class="nav_link"
-              ><i class="bi bi-kanban-fill"></i
-              ><span class="nav_name">Projects</span>
-            </a>
-            <a href="#" class="nav_link">
-              <img src="./images/teams.png" alt="" /><span class="nav_name"
-                >Teams</span
-              >
-            </a>
-            <a href="#" class="nav_link">
-              <i class="bi bi-gear-fill"></i
-              ><span class="nav_name">Settings</span>
-            </a>
-            <div class="header_toggle">
-              <i class="bx bx-chevron-right" id="header-toggle"></i>
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav_logo">
+                    <img src="./images/logohere.png" />
+                    <span class="nav_logo-name">logohere</span>
+                </a>
+                <div class="nav_list">
+                    <a href="#" class="nav_link active">
+                        <i class="bx bx-grid-alt nav_icon"></i>
+                        <span class="nav_name">Dashboard</span>
+                    </a>
+                    <a href="#" class="nav_link">
+                        <i class="bx bxs-calendar"></i>
+                        <span class="nav_name">Calendar</span>
+                    </a>
+                    <a href="#" class="nav_link"><i class="bi bi-kanban-fill"></i><span class="nav_name">Projects</span>
+                    </a>
+                    <a href="#" class="nav_link">
+                        <img src="./images/teams.png" alt="" /><span class="nav_name">Teams</span>
+                    </a>
+                    <a href="#" class="nav_link">
+                        <i class="bi bi-gear-fill"></i><span class="nav_name">Settings</span>
+                    </a>
+                    <div class="header_toggle">
+                        <i class="bx bx-chevron-right" id="header-toggle"></i>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </nav>
+        </nav>
     </div>
     <!--Container Main start-->
     <div class="height-100">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-9">
+        <div class="container-fluid">
             <div class="row">
-              <div class="col-10">
-                <div class="d-flex form-inputs position-relative">
-                  <input
-                    class="form-control"
-                    type="text"
-                    placeholder="Search any product..."
-                  />
-                  <i class="bx bx-search"></i>
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="d-flex form-inputs position-relative">
+                                <input class="form-control" type="text" placeholder="Search" />
+                                <i class="bx bx-search"></i>
+                            </div>
+                        </div>
+                        <div class="col-2 d-flex justify-content-end">
+                            <button type="button" class="btn btn-primary search_btn">
+                                Search
+                            </button>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="col-2 d-flex justify-content-end">
-                <button type="button" class="btn btn-primary search_btn">
-                  Search
-                </button>
-              </div>
-            </div>
-          </div>
-          <div
-            class="col-3 d-flex justify-content-end align-items-center user_acc"
-          >
-            <h4 class="d-inline me-3">Jane Cooper</h4>
-            <img class="d-inline" src="./images/header_lady.png" alt="" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-9 mt-3">
-            <div class="d-flex gap-4">
-              <div class="work_hour_div">
-                <div>
-                  <p class="d-inline">Monthly Working Hours</p>
-                  <h5>160</h5>
-                </div>
-                <i class="bx bx-calendar"></i>
-              </div>
-              <div class="work_hour_div">
-                <div>
-                  <p class="d-inline">Weekly Working Hours</p>
-                  <h5>160</h5>
-                </div>
+                <div class="col-3 d-flex justify-content-end align-items-center user_acc">
+                    <div class="me-3 jane_cap_txt">
+                        <h4>Jane Cooper</h4>
+                    </div>
 
-                <i class="bi bi-clock-fill"></i>
-              </div>
-              <div class="work_hour_div">
-                <div>
-                  <p class="d-inline">Late Days</p>
-                  <h5>160</h5>
+                    <img class="d-inline" src="./images/header_lady.png" alt="" />
                 </div>
-                <i><img src="./images/run_man.svg" alt="" /></i>
-              </div>
-              <div class="work_hour_div">
-                <div>
-                  <p class="d-inline">Leave Without Pay</p>
-                  <h5>160</h5>
-                </div>
-                <i class="bx bx-calendar"></i>
-              </div>
             </div>
-            <div class="d-flex mt-3 border-rounded-2">
-              <div class="leaves_mng">
-                <p>Leaves Remaining</p>
-                <h3 class="">10</h3>
-              </div>
-              <div class="vr vr-blurry"></div>
-              <div class="leaves_mng">
-                <p>Leaves Taken</p>
-                <h3>06</h3>
-              </div>
-              <div class="leaves_mng">
-                <p>Leaves pending to approve</p>
-                <h3>01</h3>
-              </div>
-            </div>
-
             <div class="row">
-              <div class="col-7">
-                <h3 class="my-3">Employee on leave today</h3>
-                <div class="bg-white">
-                  <table class="table">
-                    <thead class="linearGreBg">
-                      <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Leave Starts</th>
-                        <th scope="col">Leave Ends</th>
-                        <th scope="col">Time</th>
-                      </tr>
-                    </thead>
-                    <tbody class="bg-white">
-                      <tr>
-                        <td>John Doe</td>
-                        <td>3.00 days</td>
-                        <td>12/01/2023</td>
-                        <td>14/01/2023</td>
-                        <td>Full Day</td>
-                      </tr>
-                      <tr>
-                        <td>John Doe</td>
-                        <td>3.00 days</td>
-                        <td>12/01/2023</td>
-                        <td>14/01/2023</td>
-                        <td>Full Day</td>
-                      </tr>
-                      <tr>
-                        <td>John Doe</td>
-                        <td>3.00 days</td>
-                        <td>12/01/2023</td>
-                        <td>14/01/2023</td>
-                        <td>Full Day</td>
-                      </tr>
-                      <tr>
-                        <td>John Doe</td>
-                        <td>3.00 days</td>
-                        <td>12/01/2023</td>
-                        <td>14/01/2023</td>
-                        <td>Full Day</td>
-                      </tr>
-                      <tr>
-                        <td>John Doe</td>
-                        <td>3.00 days</td>
-                        <td>12/01/2023</td>
-                        <td>14/01/2023</td>
-                        <td>Full Day</td>
-                      </tr>
-                      <tr>
-                        <td>John Doe</td>
-                        <td>3.00 days</td>
-                        <td>12/01/2023</td>
-                        <td>14/01/2023</td>
-                        <td>Full Day</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <li
-                    style="
+                <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-xs-12 mt-3">
+                    <div class="d-flex gap-4 res_wrap">
+                        <div class="work_hour_div">
+                            <div>
+                                <p class="d-inline">Monthly Working Hours</p>
+                                <h5>160</h5>
+                            </div>
+                            <i class="bx bx-calendar"></i>
+                        </div>
+                        <div class="work_hour_div">
+                            <div>
+                                <p class="d-inline">Weekly Working Hours</p>
+                                <h5>40</h5>
+                            </div>
+
+                            <i class="bi bi-clock-fill"></i>
+                        </div>
+                        <div class="work_hour_div">
+                            <div>
+                                <p class="d-inline">Late Days</p>
+                                <h5>9</h5>
+                            </div>
+                            <i><img src="./images/run_man.svg" alt="" /></i>
+                        </div>
+                        <div class="work_hour_div">
+                            <div>
+                                <p class="d-inline">Leave Without Pay</p>
+                                <h5>2</h5>
+                            </div>
+                            <i class="bx bx-calendar"></i>
+                        </div>
+                    </div>
+                    <div class="d-flex mt-3 border-rounded-2 res_wrap">
+                        <div class="leaves_mng">
+                            <p>Leaves Remaining</p>
+                            <h2 class="text-primary">10</h3>
+                        </div>
+                        <div class="vr vr-blurry"></div>
+                        <div class="leaves_mng">
+                            <p>Leaves Taken</p>
+                            <h2 style="color:rgb(236, 158, 12)">06</h3>
+                        </div>
+                        <div class="leaves_mng">
+                            <p>Leaves pending to approve</p>
+                            <h2 class="text-danger">01</h3>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-xs-12">
+                            <h3 class="my-3">Employee on leave today</h3>
+                            <div class="bg-white table-responsive">
+                                <table class="table">
+                                    <thead class="linearGreBg">
+                                        <tr>
+                                            <th scope="col">Name</th>
+                                            <th scope="col">Duration</th>
+                                            <th scope="col">Leave Starts</th>
+                                            <th scope="col">Leave Ends</th>
+                                            <th scope="col">Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white">
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>3.00 days</td>
+                                            <td>12/01/2023</td>
+                                            <td>14/01/2023</td>
+                                            <td>Full Day</td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>3.00 days</td>
+                                            <td>12/01/2023</td>
+                                            <td>14/01/2023</td>
+                                            <td>Full Day</td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>3.00 days</td>
+                                            <td>12/01/2023</td>
+                                            <td>14/01/2023</td>
+                                            <td>Full Day</td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>3.00 days</td>
+                                            <td>12/01/2023</td>
+                                            <td>14/01/2023</td>
+                                            <td>Full Day</td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>3.00 days</td>
+                                            <td>12/01/2023</td>
+                                            <td>14/01/2023</td>
+                                            <td>Full Day</td>
+                                        </tr>
+                                        <tr>
+                                            <td>John Doe</td>
+                                            <td>3.00 days</td>
+                                            <td>12/01/2023</td>
+                                            <td>14/01/2023</td>
+                                            <td>Full Day</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <li style="
                       align-items: center;
                       text-align: center;
                       list-style-type: none;
                       text-decoration: underline;
                       margin-top: 30px;
                       padding-bottom: 24px;
-                    "
-                    class="view_all"
-                  >
-                    <a href="#/link">View All</a>
-                  </li>
-                </div>
-              </div>
-              <div class="col-5 Conversations position-relative">
-                <div class="ms-5">
-                  <h3 class="my-3">Conversations</h3>
-                  <div class="p-4 bg-white">
-                    <div class="d-flex justify-content-between header">
-                      <a href="#nbchjs"
-                        ><p
-                          style="
+                    " class="view_all">
+                                    <a href="#/link">View All</a>
+                                </li>
+                            </div>
+                        </div>
+                        <div class="col-xl-5 col-lg-5 col-md-12 col-sm-12 col-xs-12 Conversations position-relative">
+                            <div class="ms-5 Conversations_ms_set">
+                                <h3 class="my-3">Conversations</h3>
+                                <div class="p-4 bg-white">
+                                    <div class="d-flex justify-content-between header just_con_even">
+                                        <a href="#nbchjs">
+                                            <p style="
                             font-family: 'Poppins';
                             font-style: normal;
                             font-weight: 500;
@@ -233,318 +209,310 @@
                             letter-spacing: 0.25px;
                             text-decoration: underline;
                             color: #5630d3;
-                          "
-                        >
-                          Latest Chats
-                        </p></a
-                      >
-                      <p>Scheduled posts</p>
-                      <i class="bi bi-three-dots"></i>
-                    </div>
-                    <div class="d-flex justify-content-between mt-5">
-                      <img class="h-50" src="./images/yatri.png" alt="" />
-                      <div class="ms-4">
-                        <h5>Yatri Patel</h5>
-                        <p>
-                          The tasks which we submitted yesterday requires
-                          design...
-                        </p>
-                        <div>
-                          <i class="bi bi-heart me-4"> 39</i>
-                          <i class="bi bi-chat me-4"> 24</i>
-                          <i class="bi bi-bookmark-dash"> 102</i>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="d-flex justify-content-between mt-3">
-                      <img class="h-50" src="./images/kinnari.png" alt="" />
-                      <div class="ms-4">
-                        <h5>Yatri Patel</h5>
-                        <p>
-                          The tasks which we submitted yesterday requires
-                          design...
-                        </p>
-                        <div>
-                          <i class="bi bi-heart me-4"> 39</i>
-                          <i class="bi bi-chat me-4"> 24</i>
-                          <i class="bi bi-bookmark-dash"> 102</i>
-                        </div>
-                      </div>
-                    </div>
-                    <li
-                      style="
+                          ">
+                                                Latest Chats
+                                            </p>
+                                        </a>
+                                        <p>Scheduled posts</p>
+                                        <i class="bi bi-three-dots"></i>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-5 just_con_start">
+                                        <img class="h-50" src="./images/yatri.png" alt="" />
+                                        <div class="ms-4">
+                                            <h5>Yatri Patel</h5>
+                                            <p>
+                                                The tasks which we submitted yesterday requires
+                                                design...
+                                            </p>
+                                            <div>
+                                                <i class="bi bi-heart me-4"> 39</i>
+                                                <i class="bi bi-chat me-4"> 24</i>
+                                                <i class="bi bi-bookmark-dash"> 102</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-3 just_con_start">
+                                        <img class="h-50" src="./images/kinnari.png" alt="" />
+                                        <div class="ms-4">
+                                            <h5>Yatri Patel</h5>
+                                            <p>
+                                                The tasks which we submitted yesterday requires
+                                                design...
+                                            </p>
+                                            <div>
+                                                <i class="bi bi-heart me-4"> 39</i>
+                                                <i class="bi bi-chat me-4"> 24</i>
+                                                <i class="bi bi-bookmark-dash"> 102</i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <li style="
                         align-items: center;
                         text-align: center;
                         list-style-type: none;
                         text-decoration: underline;
                         margin-top: 37px;
-                      "
-                      class="view_all"
-                    >
-                      <a href="#/link">View All</a>
-                    </li>
-                  </div>
-                </div>
-                <div class="edit">
-                  <div>
-                    <i class="bi bi-pencil-fill"></i>
-                    <p class="d-inline">Edit</p>
-                  </div>
-                  <div>
-                    <i class="bi bi-trash-fill"></i>
-                    <p class="d-inline">Delete</p>
-                  </div>
-                </div>
-              </div>
-              <div class="row mb-5">
-                <div class="col-12">
-                  <h3 class="my-4">Assigned Tasks</h3>
-                  <div class="bg-white">
-                    <table class="table">
-                      <thead class="linearGreBg">
-                        <tr>
-                          <th scope="col">Task Name</th>
-                          <th scope="col">Date</th>
-                          <th scope="col">Logged Hours</th>
-                          <th scope="col">Task Efficiency</th>
-                          <th scope="col">Action</th>
-                        </tr>
-                      </thead>
-                      <tbody class="bg-white">
-                        <tr>
-                          <td>Magento-VP file-edits</td>
-                          <td>02 Jan 2023</td>
-                          <td>04:00 hrs</td>
-                          <td style="color: rgb(64, 241, 64)">100%</td>
-                          <td><i class="bi bi-three-dots-vertical"></i></td>
-                        </tr>
-                        <tr>
-                          <td>Magento-VP file-edits</td>
-                          <td>02 Jan 2023</td>
-                          <td>04:00 hrs</td>
-                          <td style="color: rgb(64, 241, 64)">100%</td>
-                          <td><i class="bi bi-three-dots-vertical"></i></td>
-                        </tr>
-                        <tr>
-                          <td>Magento-VP file-edits</td>
-                          <td>02 Jan 2023</td>
-                          <td>04:00 hrs</td>
-                          <td style="color: rgb(64, 241, 64)">100%</td>
-                          <td><i class="bi bi-three-dots-vertical"></i></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <li
-                      style="
+                      " class="view_all">
+                                        <a href="#/link">View All</a>
+                                    </li>
+                                </div>
+                            </div>
+                            <div class="edit">
+                                <div class="mb-3">
+                                    <i class="bi bi-pencil-fill me-2"></i>
+                                    <p class="d-inline">Edit</p>
+                                </div>
+                                <div>
+                                    <i class="bi bi-trash-fill me-2"></i>
+                                    <p class="d-inline">Delete</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <h3 class="my-4">Assigned Tasks</h3>
+                                <div class="bg-white table-responsive">
+                                    <table class="table">
+                                        <thead class="linearGreBg">
+                                            <tr>
+                                                <th scope="col">Task Name</th>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Logged Hours</th>
+                                                <th scope="col">Task Efficiency</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white">
+                                            <tr>
+                                                <td>Magento-VP file-edits</td>
+                                                <td>02 Jan 2023</td>
+                                                <td>04:00 hrs</td>
+                                                <td style="color: rgb(64, 241, 64)">100%</td>
+                                                <td><i class="bi bi-three-dots-vertical"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Magento-VP file-edits</td>
+                                                <td>02 Jan 2023</td>
+                                                <td>04:00 hrs</td>
+                                                <td style="color: rgb(64, 241, 64)">100%</td>
+                                                <td><i class="bi bi-three-dots-vertical"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Magento-VP file-edits</td>
+                                                <td>02 Jan 2023</td>
+                                                <td>04:00 hrs</td>
+                                                <td style="color: rgb(64, 241, 64)">100%</td>
+                                                <td><i class="bi bi-three-dots-vertical"></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <li style="
                         align-items: center;
                         text-align: center;
                         list-style-type: none;
                         text-decoration: underline;
                         margin-top: 20px;
                         padding-bottom: 20px;
-                      "
-                      class="view_all"
-                    >
-                      <a href="#/link">View All</a>
-                    </li>
-                  </div>
+                      " class="view_all">
+                                        <a href="#/link">View All</a>
+                                    </li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mt-3 ps-4 p_s_set">
+                        <div class="birthToday linearGreBg">
+                            <p class="mt-3">Birthdays Today</p>
+                            <img src="./images/cake.svg" alt="cake" />
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/shubham.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Shubham Mehta</p>
+                                <p class="role">UX/UI Designer</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/palak.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Shubham Mehta</p>
+                                <p class="role">UX/UI Designer</p>
+                            </div>
+                        </div>
+                        <div class="birthToday linearGreBg">
+                            <p class="mt-3">Work Anniversary</p>
+                            <img src="./images/work_any.svg" alt="cake" />
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/suraj.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Suraj Kushwaha</p>
+                                <p class="role">UX/UI Designer</p>
+                            </div>
+                            <div class="ms-5 ps-3 year_txt">
+                                <p>1 year</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/vishal.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Vishal Prajapati</p>
+                                <p class="role">UX/UI Designer</p>
+                            </div>
+                            <div class="ms-5 ps-3 year_txt">
+                                <p>2 year</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/uttam.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Uttam Vora</p>
+                                <p class="role">UX/UI Designer</p>
+                            </div>
+                            <div class="ms-5 ps-4 year_txt">
+                                <p>3 year</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/suraj2.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Suraj Kushwaha</p>
+                                <p class="role">UX/UI Designer</p>
+                            </div>
+                            <div class="ms-5 ps-3 year_txt">
+                                <p>3 year</p>
+                            </div>
+                        </div>
+                        <div class="birthToday linearGreBg">
+                            <p class="mt-3">Holidays</p>
+                            <img src="./images/holyday.svg" alt="cake" />
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/uttrayn.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Uttrayan</p>
+                                <p class="role">14 Jan 2023 | Friday</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/uttrayn.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Vashi Uttrayan</p>
+                                <p class="role">15 Jan 2023 | Saturday</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/inds.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Republic Day</p>
+                                <p class="role">26 Jan 2023 | Wednesday</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/holi.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Holi</p>
+                                <p class="role">18 March 2023 | Friday</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/rakhi 1.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Rakshabandhan</p>
+                                <p class="role">11 Aug 2023 | Thursday</p>
+                            </div>
+                        </div>
+                        <div class="person">
+                            <div class="p-img">
+                                <img src="./images/inds.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Republic Day</p>
+                                <p class="role">26 Jan 2023 | Wednesday</p>
+                            </div>
+                        </div>
+                        <div class="person mb-4">
+                            <div class="p-img">
+                                <img src="./images/holi.svg" alt="shubham" />
+                            </div>
+                            <div class="p-NR">
+                                <p class="name">Holi</p>
+                                <p class="role">1 july 2023 | Thursday</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-3">
-            <div class="mt-3 ps-4">
-              <div class="birthToday linearGreBg">
-                <p class="mt-3">Birthdays Today</p>
-                <img src="./images/cake.svg" alt="cake" />
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/shubham.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Shubham Mehta</p>
-                  <p class="role">UX/UI Designer</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/palak.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Shubham Mehta</p>
-                  <p class="role">UX/UI Designer</p>
-                </div>
-              </div>
-              <div class="birthToday linearGreBg">
-                <p class="mt-3">Work Anniversary</p>
-                <img src="./images/work_any.svg" alt="cake" />
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/suraj.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Suraj Kushwaha</p>
-                  <p class="role">UX/UI Designer</p>
-                </div>
-                <div class="ms-5 ps-3 year_txt">
-                  <p>1 year</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/vishal.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Vishal Prajapati</p>
-                  <p class="role">UX/UI Designer</p>
-                </div>
-                <div class="ms-5 ps-3 year_txt">
-                  <p>2 year</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/uttam.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Uttam Vora</p>
-                  <p class="role">UX/UI Designer</p>
-                </div>
-                <div class="ms-5 ps-4 year_txt">
-                  <p>3 year</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/suraj2.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Suraj Kushwaha</p>
-                  <p class="role">UX/UI Designer</p>
-                </div>
-                <div class="ms-5 ps-3 year_txt">
-                  <p>3 year</p>
-                </div>
-              </div>
-              <div class="birthToday linearGreBg">
-                <p class="mt-3">Holidays</p>
-                <img src="./images/holyday.svg" alt="cake" />
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/uttrayn.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Uttrayan</p>
-                  <p class="role">14 Jan 2023 | Friday</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/uttrayn.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Vashi Uttrayan</p>
-                  <p class="role">15 Jan 2023 | Saturday</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/inds.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Republic Day</p>
-                  <p class="role">26 Jan 2023 | Wednesday</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/holi.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Holi</p>
-                  <p class="role">18 March 2023 | Friday</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/rakhi 1.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Rakshabandhan</p>
-                  <p class="role">11 Aug 2023 | Thursday</p>
-                </div>
-              </div>
-              <div class="person">
-                <div class="p-img">
-                  <img src="./images/inds.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Republic Day</p>
-                  <p class="role">26 Jan 2023 | Wednesday</p>
-                </div>
-              </div>
-              <div class="person mb-4">
-                <div class="p-img">
-                  <img src="./images/holi.svg" alt="shubham" />
-                </div>
-                <div class="p-NR">
-                  <p class="name">Holi</p>
-                  <p class="role">1 july 2023 | Thursday</p>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
     <!--Container Main end-->
-  </body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"
-  ></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script>
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
     document.addEventListener("DOMContentLoaded", function (event) {
-      const showNavbar = (toggleId, navId, bodyId, headerId) => {
-        const toggle = document.getElementById(toggleId),
-          nav = document.getElementById(navId),
-          bodypd = document.getElementById(bodyId),
-          headerpd = document.getElementById(headerId);
+        const showNavbar = (toggleId, navId, bodyId, headerId) => {
+            const toggle = document.getElementById(toggleId),
+                nav = document.getElementById(navId),
+                bodypd = document.getElementById(bodyId),
+                headerpd = document.getElementById(headerId);
 
-        // Validate that all variables exist
-        if (toggle && nav && bodypd && headerpd) {
-          toggle.addEventListener("click", () => {
-            // show navbar
-            nav.classList.toggle("show");
-            // change icon
-            toggle.classList.toggle("bx-x");
-            // add padding to body
-            bodypd.classList.toggle("body-pd");
-            // add padding to header
-            headerpd.classList.toggle("body-pd");
-          });
+            // Validate that all variables exist
+            if (toggle && nav && bodypd && headerpd) {
+                toggle.addEventListener("click", () => {
+                    // show navbar
+                    nav.classList.toggle("show");
+                    // change icon
+                    toggle.classList.toggle("bx-x");
+                    // add padding to body
+                    bodypd.classList.toggle("body-pd");
+                    // add padding to header
+                    headerpd.classList.toggle("body-pd");
+                });
+            }
+        };
+
+        showNavbar("header-toggle", "nav-bar", "body-pd", "header");
+
+        /*===== LINK ACTIVE =====*/
+        const linkColor = document.querySelectorAll(".nav_link");
+
+        function colorLink() {
+            if (linkColor) {
+                linkColor.forEach((l) => l.classList.remove("active"));
+                this.classList.add("active");
+            }
         }
-      };
+        linkColor.forEach((l) => l.addEventListener("click", colorLink));
 
-      showNavbar("header-toggle", "nav-bar", "body-pd", "header");
-
-      /*===== LINK ACTIVE =====*/
-      const linkColor = document.querySelectorAll(".nav_link");
-
-      function colorLink() {
-        if (linkColor) {
-          linkColor.forEach((l) => l.classList.remove("active"));
-          this.classList.add("active");
-        }
-      }
-      linkColor.forEach((l) => l.addEventListener("click", colorLink));
-
-      // Your code to run since DOM is loaded and ready
+        // Your code to run since DOM is loaded and ready
     });
-  </script>
+</script>
+
 </html>
