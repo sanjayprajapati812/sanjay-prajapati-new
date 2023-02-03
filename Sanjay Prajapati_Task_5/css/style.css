@@ -65,17 +65,21 @@ th {
     color: #000000;
 }
 
+.edit {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background-color: white;
+}
+
 td {
-    font-family: 'Montserrat';
+    font-family: "Montserrat";
     font-style: normal;
-    font-weight: 300;
+    font-weight: 500;
     font-size: 12px;
     line-height: 18px;
-    /* identical to box height */
-
     letter-spacing: 0.25px;
-
-    color: #000000;
+    color: #272830;
 }
 
 h3 {
@@ -84,9 +88,6 @@ h3 {
     font-weight: 500;
     font-size: 17px;
     line-height: 26px;
-    /* identical to box height */
-
-
     color: #000000;
 }
 
@@ -164,6 +165,19 @@ a {
     text-decoration-line: underline;
 
     color: #1E2875;
+}
+
+.year_txt p {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 15px;
+    /* identical to box height */
+
+    letter-spacing: 0.25px;
+
+    color: #000000;
 }
 
 .header_toggle {
@@ -318,7 +332,7 @@ body {
     display: flex;
     width: 100%;
     flex-direction: column;
-    border-left: 1px solid #939393;
+    border-left: 2px solid #939393;
 }
 
 th,
