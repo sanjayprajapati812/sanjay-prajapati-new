@@ -65,14 +65,29 @@ th {
     color: #000000;
 }
 
+.popover-body {
+    padding: 0px;
+    color: #212529;
+}
+
+.popover-arrow {
+    display: none;
+}
+
 .edit {
     position: absolute;
-    top: 103px;
-    right: -49px;
+    top: 15px;
+    right: 14px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-    padding: 14px;
+    padding: 16px;
     font-size: 14px;
+}
+
+.popover {
+
+    max-width: 200px;
+    border: none;
 }
 
 td {
