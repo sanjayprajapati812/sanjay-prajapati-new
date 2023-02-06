@@ -20,9 +20,9 @@ function removeElement(currEle) {
     count = count - 1;
   } else {
     document.getElementById("minusBtn").disabled = false;
-    const findCurr = document.getElementById(currEle);
+    const findCurrent = document.getElementById(currEle);
     //   console.log(a.parentNode.parentNode.parentNode);
-    findCurr.parentNode.parentNode.parentNode.remove();
+    findCurrent.parentNode.parentNode.parentNode.remove();
     count--;
   }
 }
