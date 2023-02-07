@@ -1,4 +1,5 @@
 const childDivElement = document.getElementById("childDivElement").innerHTML;
+
 // console.log(childDivElement);
 let count = 1;
 
@@ -16,12 +17,13 @@ function addElement() {
 }
 
 function removeElement(currEle) {
+  document.getElementById("limitShow").innerHTML = "";
   if (count <= 1) {
     document.getElementById("minusBtn").disabled = true;
   } else {
     document.getElementById("minusBtn").disabled = false;
     const findCurrent = document.getElementById(currEle);
-    //   console.log(a.parentNode.parentNode.parentNode);
+    //   console.log(findCurrent.parentNode.parentNode.parentNode);
     findCurrent.parentNode.parentNode.remove();
     count--;
     // console.log(count)
