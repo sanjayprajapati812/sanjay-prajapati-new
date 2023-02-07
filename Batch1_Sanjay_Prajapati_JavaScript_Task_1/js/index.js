@@ -1,4 +1,5 @@
 const childDivElement = document.getElementById("childDivElement").innerHTML;
+let plusBtn = document.getElementById("plusBtn");
 
 // console.log(childDivElement);
 let count = 1;
@@ -10,9 +11,10 @@ function addElement() {
     document.getElementById("divElement").innerHTML += childDivElement;
     document.getElementById("minusBtn").disabled = false;
     count++;
-    // console.log(count)
+    console.log(count)
   } else {
     document.getElementById("limitShow").innerHTML = "limit over";
+    plusBtn.disabled = true;
   }
 }
 
@@ -22,10 +24,9 @@ function removeElement(currEle) {
     document.getElementById("minusBtn").disabled = true;
   } else {
     document.getElementById("minusBtn").disabled = false;
-    const findCurrent = document.getElementById(currEle);
-    //   console.log(findCurrent.parentNode.parentNode.parentNode);
-    findCurrent.parentNode.parentNode.remove();
-    count--;
-    // console.log(count)
+    plusBtn.disabled = false;
+    currEle.parentNode.parentNode.remove();
+    count-- ;
+    console.log(count)
   }
 }

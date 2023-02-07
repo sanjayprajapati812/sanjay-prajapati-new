@@ -14,8 +14,8 @@
 <body>
   <div class="container mt-5">
     <div class="row mb-3">
-      <div class="col" id="plusBtn">
-        <input type="button" onclick="addElement()" value="+" class="btn btn-primary px-3" />
+      <div class="col">
+        <input type="button" id="plusBtn" onclick="addElement()" value="+" class="btn btn-primary px-3" />
       </div>
     </div>
     <div id="childDivElement">
@@ -26,7 +26,7 @@
           </div>
         </div>
         <div class="col-2">
-          <input onclick="removeElement(this.id)" type="button" value="-" id="minusBtn" class="btn btn-danger px-3" />
+          <input onclick="removeElement(this)" type="button" value="-" id="minusBtn" class="btn btn-danger px-3" />
         </div>
       </div>
     </div>
