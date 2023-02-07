@@ -7,7 +7,7 @@ document.getElementById("minusBtn").disabled = true;
 
 function addElement() {
   if (count < 10) {
-    document.getElementById("divElement").innerHTML+=childDivElement;
+    document.getElementById("divElement").innerHTML += childDivElement;
     document.getElementById("minusBtn").disabled = false;
     count++;
     // console.log(count)
