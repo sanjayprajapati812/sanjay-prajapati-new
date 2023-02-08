@@ -23,16 +23,18 @@ function enaDisBtn() {
 }
 
 function addElement() {
-  document.getElementById("divElement").innerHTML += childDivElement;
+  const node = document.createElement("div");
+  node.innerHTML = childDivElement;
+  document.getElementById("divElement").appendChild(node);
   document.getElementById("minusBtn").disabled = false;
   count++;
-  console.log(count)
+  // console.log(count)
   enaDisBtn();
 }
 
 function removeElement(currEle) {
-  currEle.parentNode.parentNode.remove();
+  currEle.parentNode.parentNode.parentNode.remove();
   count--;
-  console.log(count)
+  // console.log(count)
   enaDisBtn()
 }
