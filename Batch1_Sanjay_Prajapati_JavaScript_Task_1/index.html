@@ -17,28 +17,26 @@
   <body>
     <div class="container mt-5">
       <div class="row mb-3">
-        <div class="col-2">
+        <div class="col-12 col-small">
           <input
             type="button"
             id="plusBtn"
             onclick="addElement()"
             value="+"
-            class="btn btn-primary px-3"
+            class="btn btn-primary px-3 w-xs-100"
           />
-        </div>
-        <div class="col-2">
           <input
             type="button"
             id="resetBtn"
             onclick="reset()"
             value="Reset"
-            class="btn btn-primary px-3"
+            class="btn btn-primary ms-3 px-3 w-xs-100"
           />
         </div>
       </div>
       <div id="childDivElement">
         <div class="row mt-3">
-          <div class="col-10">
+          <div class="col-10 col-small">
             <div class="form-group">
               <input
                 type="text"
@@ -49,13 +47,13 @@
               />
             </div>
           </div>
-          <div class="col-2">
+          <div class="col-2 col-small">
             <input
               onclick="removeElement(this)"
               type="button"
               value="-"
               id="minusBtn"
-              class="btn btn-danger px-3"
+              class="btn btn-danger px-3 w-xs-100"
             />
           </div>
         </div>

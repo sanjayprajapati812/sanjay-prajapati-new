@@ -24,6 +24,7 @@ function enaDisBtn() {
 
 function addElement() {
   const node = document.createElement("div");
+  node.setAttribute("class","fadeinout");
   node.innerHTML = childDivElement;
   document.getElementById("divElement").appendChild(node);
   document.getElementById("minusBtn").disabled = false;
