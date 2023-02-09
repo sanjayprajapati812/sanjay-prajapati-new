@@ -36,5 +36,17 @@ function removeElement(currEle) {
   currEle.parentNode.parentNode.parentNode.remove();
   count--;
   // console.log(count)
-  enaDisBtn()
+  enaDisBtn();
+}
+
+function reset() {
+  if (document.getElementById("childDivElement")) {
+    document.getElementById("divElement").innerHTML = "";
+    document.getElementById("childDivElement").innerHTML = childDivElement;
+  } else {
+    document.getElementById("divElement").innerHTML =
+      "<div>" + childDivElement + "</div>";
+  }
+  count = 1;
+  enaDisBtn();
 }
