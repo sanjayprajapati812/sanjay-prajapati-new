@@ -56,8 +56,15 @@ tbody tr th:first-child:before {
   background: blue;
 
 }
-@media (max-width: 300px) { 
-  .container{
+
+.btnPF {
+  width: 50%;
+}
+
+@media (max-width: 300px) {
+  .container {
     padding: 10px !important;
   }
- }
+
+
+}

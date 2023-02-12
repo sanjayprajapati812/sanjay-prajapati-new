@@ -3,7 +3,7 @@ const nodeInput = inputDataTable.rows[1].innerHTML;
 var count = 0;
 var regName = /^[a-zA-Z ]*$/;
 
-var validate = true;
+var validate = false;
 
 function addNewRow() {
   const node = document.createElement("tr");
@@ -26,26 +26,36 @@ function addIndex(n) {
   inputDataTable.rows[n].cells[0].innerHTML = n;
 }
 
+
+const errDiv = document.createElement("div")
+errDiv.setAttribute("class","text-danger")
+
 function showNameError(curInput) {
+  curInput.parentNode.appendChild(errDiv);
   if (!regName.test(curInput.value)) {
     curInput.setAttribute("class", "form-control error");
+    errDiv.innerText = "*Please enter valid input";
   } else {
     curInput.setAttribute("class", "form-control");
+    errDiv.innerText = "";
   }
 }
 
 function showNumberError(curInput) {
+  curInput.parentNode.appendChild(errDiv);
   if (Number(curInput.value) < 0 || curInput.value > 100) {
     curInput.setAttribute("class", "form-control error");
+    errDiv.innerText = "*Please enter valid input";
   } else {
     curInput.setAttribute("class", "form-control");
+    errDiv.innerText = "";
   }
 }
 
 function validateTable() {
   let errClass = document.getElementsByClassName("error");
   //console.log(errClass)
-  if (errClass.length==0) {
+  if (errClass.length == 0) {
     validate = true;
   } else {
     validate = false;
@@ -54,11 +64,15 @@ function validateTable() {
 }
 
 function Submit() {
+  const mainErrShow = document.getElementById("mainErrShow");
+  const container2 = document.getElementById("container2");
   if (validateTable()) {
+    container2.style.display = "block"
+    mainErrShow.innerHTML = "";
     generateTable();
   } else {
-    document.getElementById("addTable").innerHTML =
-      "please enter all correct detail to show result";
+    container2.style.display = "none"
+    mainErrShow.innerHTML = "*please enter all correct detail to show result";
   }
 }
 

@@ -48,10 +48,12 @@
                                                                 <td><input onchange="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
-                                                                <td class="d-flex"><button type="button"
-                                                                                class="btn btn-success me-2">Pass</button><button
-                                                                                type="button"
-                                                                                class="btn btn-warning">Fail</button>
+                                                                <td>
+                                                                        <div class="d-flex"><button type="button"
+                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
+                                                                                        type="button"
+                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        </div>
                                                                 </td>
                                                                 <td><button onclick="removeRow(this)" type="button"
                                                                                 class="btn btn-danger d-none">Remove</button>
@@ -68,10 +70,12 @@
                                                                 <td><input onchange="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
-                                                                <td class="d-flex"><button type="button"
-                                                                                class="btn btn-success me-2">Pass</button><button
-                                                                                type="button"
-                                                                                class="btn btn-warning">Fail</button>
+                                                                <td>
+                                                                        <div class="d-flex"><button type="button"
+                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
+                                                                                        type="button"
+                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        </div>
                                                                 </td>
                                                                 <td><button onclick="removeRow(this)" type="button"
                                                                                 class="btn btn-danger d-none">Remove</button>
@@ -88,10 +92,12 @@
                                                                 <td><input onchange="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
-                                                                <td class="d-flex"><button type="button"
-                                                                                class="btn btn-success me-2">Pass</button><button
-                                                                                type="button"
-                                                                                class="btn btn-warning">Fail</button>
+                                                                <td>
+                                                                        <div class="d-flex"><button type="button"
+                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
+                                                                                        type="button"
+                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        </div>
                                                                 </td>
                                                                 <td><button onclick="removeRow(this)" type="button"
                                                                                 class="btn btn-danger d-none">Remove</button>
@@ -108,10 +114,12 @@
                                                                 <td><input onchange="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
-                                                                <td class="d-flex"><button type="button"
-                                                                                class="btn btn-success me-2">Pass</button><button
-                                                                                type="button"
-                                                                                class="btn btn-warning">Fail</button>
+                                                                <td>
+                                                                        <div class="d-flex"><button type="button"
+                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
+                                                                                        type="button"
+                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        </div>
                                                                 </td>
                                                                 <td><button onclick="removeRow(this)" type="button"
                                                                                 class="btn btn-danger d-none">Remove</button>
@@ -128,10 +136,12 @@
                                                                 <td><input onchange="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
-                                                                <td class="d-flex"><button type="button"
-                                                                                class="btn btn-success me-2">Pass</button><button
-                                                                                type="button"
-                                                                                class="btn btn-warning">Fail</button>
+                                                                <td>
+                                                                        <div class="d-flex"><button type="button"
+                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
+                                                                                        type="button"
+                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        </div>
                                                                 </td>
                                                                 <td><button onclick="removeRow(this)" type="button"
                                                                                 class="btn btn-danger d-none">Remove</button>
@@ -150,8 +160,13 @@
                         <div class="col"><button onclick="Submit()" type="button" class="btn btn-primary mt-3">Save and
                                         Show</button></div>
                 </div>
+                <div class="row mt-3">
+                        <div id="mainErrShow" class="col text-danger">
+
+                        </div>
+                </div>
         </div>
-        <div style="background: #adb5bd;" class="container mt-3 py-1 px-5">
+        <div id="container2" style="display: none; background: #adb5bd;" class="container mt-3 py-1 px-5">
                 <div class="row mt-5">
                         <div class="col" id="search">
                                 <div class="search shadow-sm bg-body rounded">
