@@ -17,13 +17,16 @@
         <div style="background: #adb5bd;" class="container mt-3 py-1 pb-4 px-5">
                 <div class="row mt-4">
                         <div class="col">
-                                <button id="addNewBtn" onclick="addNewRow()" type="button" class="btn btn-primary">+ Add
+                                <button id="addNewBtn" onclick="addNewRow()" type="button"
+                                        class="btn btn-primary me-3 btnResponsive">+ Add
                                         New</button>
+                                <button id="addNewBtn" onclick="addRandomData()" type="button"
+                                        class="btn btn-primary btnResponsive">Add Random Data</button>
                         </div>
                 </div>
                 <div class="row mt-4">
                         <div class="col table-responsive">
-                                <form class="needs-validation" id="form" onsubmit="validateTable()" action="">
+                                <form class="needs-validation" id="form" action="">
                                         <table id="inputDataTable"
                                                 class="table table-bordered table-hover table-primary">
                                                 <thead>
@@ -45,7 +48,7 @@
                                                                 <td><input onkeyup="showNameError(this)" type="text"
                                                                                 class="form-control subject" id=""
                                                                                 placeholder="Enter Subject"></td>
-                                                                <td><input onchange="showNumberError(this)"
+                                                                <td><input onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td>
@@ -67,7 +70,7 @@
                                                                 <td><input onkeyup="showNameError(this)" type="text"
                                                                                 class="form-control subject" id=""
                                                                                 placeholder="Enter Subject"></td>
-                                                                <td><input onchange="showNumberError(this)"
+                                                                <td><input onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td>
@@ -89,7 +92,7 @@
                                                                 <td><input onkeyup="showNameError(this)" type="text"
                                                                                 class="form-control subject" id=""
                                                                                 placeholder="Enter Subject"></td>
-                                                                <td><input onchange="showNumberError(this)"
+                                                                <td><input onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td>
@@ -111,7 +114,7 @@
                                                                 <td><input onkeyup="showNameError(this)" type="text"
                                                                                 class="form-control subject" id=""
                                                                                 placeholder="Enter Subject"></td>
-                                                                <td><input onchange="showNumberError(this)"
+                                                                <td><input onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td>
@@ -133,7 +136,7 @@
                                                                 <td><input onkeyup="showNameError(this)" type="text"
                                                                                 class="form-control subject" id=""
                                                                                 placeholder="Enter Subject"></td>
-                                                                <td><input onchange="showNumberError(this)"
+                                                                <td><input onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td>
@@ -151,13 +154,11 @@
                                                 </tbody>
                                         </table>
                                 </form>
-
                         </div>
-
-
                 </div>
                 <div class="row">
-                        <div class="col"><button onclick="Submit()" type="button" class="btn btn-primary mt-3">Save and
+                        <div class="col"><button onclick="Submit()" type="button"
+                                        class="btn btn-primary mt-3 btnResponsive">Save and
                                         Show</button></div>
                 </div>
                 <div class="row mt-3">
@@ -168,14 +169,11 @@
         </div>
         <div id="container2" style="display: none; background: #adb5bd;" class="container mt-3 py-1 px-5">
                 <div class="row mt-5">
-                        <div class="col" id="search">
-                                <div class="search shadow-sm bg-body rounded">
-                                        <i class="fa fa-search"></i>
-                                        <input id="searchInput" onkeyup="searchTable()" type="text" class="form-control"
-                                                placeholder="Search Name And Subject" />
-                                        <button class="btn btn-primary">Search</button>
-                                </div>
+                        <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12" id="search">
+                                <input id="searchInput" onkeyup="searchTable()" type="text"
+                                        class="form-control d-inline" placeholder="Search Name OR Subject" />
                         </div>
+                        <div class="col-lg-4 col-md-4 col-sm-2 col-xs-12"><button onclick="searchTable()" class="btn btn-primary btnResponsive margin_top">Search</button></div>
                 </div>
                 <div class="row mt-5">
                         <div class="col table-responsive" id="addTable">

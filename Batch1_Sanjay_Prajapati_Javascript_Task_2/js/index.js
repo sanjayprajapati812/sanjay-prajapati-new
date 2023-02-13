@@ -1,6 +1,5 @@
 const inputDataTable = document.querySelector("#inputDataTable");
 const nodeInput = inputDataTable.rows[1].innerHTML;
-var count = 0;
 var regName = /^[a-zA-Z ]*$/;
 
 var validate = false;
@@ -18,23 +17,16 @@ function addNewRow() {
 
 function removeRow(curRow) {
   curRow.parentNode.parentNode.remove();
-  let n = curRow.parentNode.parentNode.rowIndex;
-  // addIndex(n);
 }
-
-function addIndex(n) {
-  inputDataTable.rows[n].cells[0].innerHTML = n;
-}
-
 
 const errDiv = document.createElement("div")
-errDiv.setAttribute("class","text-danger")
+errDiv.setAttribute("class", "text-danger")
 
 function showNameError(curInput) {
   curInput.parentNode.appendChild(errDiv);
   if (!regName.test(curInput.value)) {
     curInput.setAttribute("class", "form-control error");
-    errDiv.innerText = "*Please enter valid input";
+    errDiv.innerText = "Please enter valid input";
   } else {
     curInput.setAttribute("class", "form-control");
     errDiv.innerText = "";
@@ -45,7 +37,7 @@ function showNumberError(curInput) {
   curInput.parentNode.appendChild(errDiv);
   if (Number(curInput.value) < 0 || curInput.value > 100) {
     curInput.setAttribute("class", "form-control error");
-    errDiv.innerText = "*Please enter valid input";
+    errDiv.innerText = "Please enter valid input";
   } else {
     curInput.setAttribute("class", "form-control");
     errDiv.innerText = "";
@@ -69,16 +61,16 @@ function Submit() {
   if (validateTable()) {
     container2.style.display = "block"
     mainErrShow.innerHTML = "";
-    generateTable();
+    generateTable(getData());
   } else {
     container2.style.display = "none"
     mainErrShow.innerHTML = "*please enter all correct detail to show result";
   }
 }
 
-const data = inputDataTable.rows;
 
 function getData() {
+  const data = inputDataTable.rows;
   let dataArray = [];
 
   for (let i = 1; i < data.length; i++) {
@@ -94,72 +86,129 @@ function getData() {
   return dataArray;
 }
 
-function generateTable() {
+function generateTable(array) {
   const tableNode = document.createElement("table");
   tableNode.setAttribute("class", "table table-bordered table-hover");
   tableNode.setAttribute("id", "genratedTable");
-  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th><th scope="col">Name <button onclick="sortTable(1)" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Subject <button onclick="sortTable(2)" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Marks</th><th scope="col">Result</th></tr></thead><tbody></tbody>`;
+  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th><th scope="col">Name <button onclick="sortTable2()" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Subject <button onclick="sortTable(2)" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Marks</th><th scope="col">Result</th></tr></thead><tbody></tbody>`;
 
-  getData().map((item, index, array) => {
+  array.map((item, index, array) => {
     const currRow = document.createElement("tr");
     tableNode.childNodes[1].appendChild(currRow);
 
-    const tdNodeIndex = document.createElement("td");
+    const tdNodeIndex = currRow.insertCell(0);
     tdNodeIndex.innerText = index + 1;
-    currRow.appendChild(tdNodeIndex);
 
-    const tdNodeName = document.createElement("td");
+    const tdNodeName = currRow.insertCell(1);
     tdNodeName.innerText = item.name ? item.name : "-";
-    currRow.appendChild(tdNodeName);
 
-    const tdNodeSub = document.createElement("td");
+    const tdNodeSub = currRow.insertCell(2);
     tdNodeSub.innerText = item.subject ? item.subject : "-";
-    currRow.appendChild(tdNodeSub);
 
-    const tdNodeMark = document.createElement("td");
+    const tdNodeMark = currRow.insertCell(3);
     tdNodeMark.innerText = item.mark ? item.mark : "-";
-    currRow.appendChild(tdNodeMark);
     // console.log(item)
 
-    const tdNodeRes = document.createElement("td");
+    const tdNodeRes = currRow.insertCell(4);
     if (!item.mark) {
       tdNodeRes.innerText = "--";
-      currRow.setAttribute("class", "table-danger");
+      currRow.setAttribute("class", "table-warning");
     }
     else if (item.mark < 33) {
       tdNodeRes.innerText = "Fail";
-      currRow.setAttribute("class", "table-warning");
+      currRow.setAttribute("class", "table-danger");
     } else {
       tdNodeRes.innerText = "Pass";
       currRow.setAttribute("class", "table-info");
     }
-    currRow.appendChild(tdNodeRes);
+    //currRow.appendChild(tdNodeRes);
   })
 
   document.getElementById("addTable").innerHTML = tableNode.outerHTML;
 }
 
 function searchTable() {
-  // Declare variables
-  let input, filter, table, tr, td2, td1, i, txtValue1, txtValue2;
-  input = document.getElementById("searchInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("genratedTable");
-  tr = table.rows;
 
-  for (i = 1; i < tr.length; i++) {
-    td1 = tr[i].cells[1];
-    td2 = tr[i].cells[2];
-    if (td1 || td2) {
-      txtValue1 = td1.textContent || td1.innerText;
-      txtValue2 = td2.textContent || td2.innerText;
-      if (txtValue1.toUpperCase().indexOf(filter) > -1 || txtValue2.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
+  let inputStr = document.getElementById("searchInput").value.toUpperCase();
+  let genTable = document.getElementById("genratedTable");
+  let tableRows = genTable.rows;
+
+  for (let i = 1; i < tableRows.length; i++) {
+    let tableCell1 = tableRows[i].cells[1];
+    let tableCell2 = tableRows[i].cells[2];
+
+    if (tableCell1 || tableCell2) {
+      let txtValue1 = tableCell1.textContent || tableCell1.innerText;
+      let txtValue2 = tableCell2.textContent || tableCell2.innerText;
+      if (txtValue1.toUpperCase().indexOf(inputStr) > -1 || txtValue2.toUpperCase().indexOf(inputStr) > -1) {
+        tableRows[i].style.display = "";
       } else {
-        tr[i].style.display = "none";
+        tableRows[i].style.display = "none";
       }
     }
   }
+}
+
+function sortTable2(element) {
+  let sortedArray;
+  let direction = "asc"
+  if (element == "name"&& direction=="asc") {
+    sortedArray = getData().sort((a, b) => {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA > nameB) {
+        return -1;
+      }
+      if (nameA < nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    direction="des"
+  }
+  else if(element == "name"&& direction=="des"){
+    sortedArray = getData().sort((a, b) => {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    direction="asc"
+  }else if(element=="subject" &&direction=="asc"){
+    sortedArray = getData().sort((a, b) => {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA > nameB) {
+        return -1;
+      }
+      if (nameA < nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    direction="asc"
+  }else{
+    sortedArray = getData().sort((a, b) => {
+      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
+      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    });
+    direction="asc"
+  }
+
+
+  generateTable(sortedArray);
 }
 
 function sortTable(n) {
@@ -201,5 +250,45 @@ function sortTable(n) {
         switching = true;
       }
     }
+  }
+}
+
+function addRandomData() {
+
+  const randomArray = [{ "name": "Teodora", "subject": "Maths", "marks": 87 },
+  { "name": "Angelico", "subject": "Engineering", "marks": 38 },
+  { "name": "Rooney", "subject": "Social Science", "marks": 12 },
+  { "name": "Nickola", "subject": "Account", "marks": 66 },
+  { "name": "Chev", "subject": "State", "marks": 43 },
+  { "name": "Elane", "subject": "Gujarati", "marks": 15 },
+  { "name": "Ivy", "subject": "English", "marks": 67 },
+  { "name": "Cyrus", "subject": "Hindi", "marks": 74 },
+  { "name": "Mariellen", "subject": "Data Science", "marks": 14 },
+  { "name": "Meryl", "subject": "Data Structure", "marks": 96 },
+  { "name": "Brena", "subject": "TOC", "marks": 1 },
+  { "name": "Wren", "subject": "IOT", "marks": 44 },
+  { "name": "Stella", "subject": "Mobile App Development", "marks": 17 },
+  { "name": "Nestor", "subject": "BME", "marks": 62 },
+  { "name": "Douglass", "subject": "Arts", "marks": 66 },
+  { "name": "Trina", "subject": "Geoghrapy", "marks": 27 },
+  { "name": "Vernor", "subject": "Physics", "marks": 24 },
+  { "name": "Pierette", "subject": "Chemistry", "marks": 69 },
+  { "name": "Patten", "subject": "Biology", "marks": 54 },
+  { "name": "Peg", "subject": "Microprocessing", "marks": 58 },
+  { "name": "Agata", "subject": "AI", "marks": 32 },
+  { "name": "Sabine", "subject": "Business Development", "marks": 84 },
+  { "name": "Frankie", "subject": "Compiler Design", "marks": 23 },
+  { "name": "Hayward", "subject": "Information Security", "marks": 38 },
+  { "name": "Sherie", "subject": "Big Data", "marks": 76 },
+  ]
+
+  const insertInputValues = inputDataTable.rows;
+  //console.log(insertInputValues)
+
+  for (let i = 1; i < insertInputValues.length; i++) {
+    let n = Math.floor(Math.random() * 25);
+    inputDataTable.rows[i].cells[1].childNodes[0].value = randomArray[n].name
+    inputDataTable.rows[i].cells[2].childNodes[0].value = randomArray[n].subject
+    inputDataTable.rows[i].cells[3].childNodes[0].value = randomArray[n].marks
   }
 }
