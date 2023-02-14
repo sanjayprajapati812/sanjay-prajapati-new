@@ -90,7 +90,7 @@ function generateTable(array) {
   const tableNode = document.createElement("table");
   tableNode.setAttribute("class", "table table-bordered table-hover");
   tableNode.setAttribute("id", "genratedTable");
-  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th><th scope="col">Name <button onclick="sortTable2()" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Subject <button onclick="sortTable(2)" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Marks</th><th scope="col">Result</th></tr></thead><tbody></tbody>`;
+  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th><th scope="col">Name <button onclick="sortTable2('name')" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Subject <button onclick="sortTable(2)" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Marks</th><th scope="col">Result</th></tr></thead><tbody></tbody>`;
 
   array.map((item, index, array) => {
     const currRow = document.createElement("tr");
@@ -150,63 +150,33 @@ function searchTable() {
 }
 
 function sortTable2(element) {
-  let sortedArray;
-  let direction = "asc"
-  if (element == "name"&& direction=="asc") {
-    sortedArray = getData().sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA > nameB) {
-        return -1;
-      }
-      if (nameA < nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    direction="des"
-  }
-  else if(element == "name"&& direction=="des"){
-    sortedArray = getData().sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    direction="asc"
-  }else if(element=="subject" &&direction=="asc"){
-    sortedArray = getData().sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA > nameB) {
-        return -1;
-      }
-      if (nameA < nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    direction="asc"
-  }else{
-    sortedArray = getData().sort((a, b) => {
-      const nameA = a.name.toUpperCase(); // ignore upper and lowercase
-      const nameB = b.name.toUpperCase(); // ignore upper and lowercase
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    direction="asc"
-  }
+  let sortedArray = [];
+  let direction = true;
 
+  sortedArray = getData().sort((a, b) => {
+    //console.log(a[element]);
+    const nameA = a[element].toUpperCase();
+    const nameB = b[element].toUpperCase();
+
+    if (direction) {
+      if (nameA > nameB) {
+        return -1;
+      }
+      if (nameA < nameB) {
+        return 1;
+      }
+      return 0;
+    } else {
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+      return 0;
+    }
+
+  });
 
   generateTable(sortedArray);
 }
