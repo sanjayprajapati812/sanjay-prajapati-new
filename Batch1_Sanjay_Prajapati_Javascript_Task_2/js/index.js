@@ -7,11 +7,7 @@ var validate = false;
 function addNewRow() {
   const node = document.createElement("tr");
   node.innerHTML = nodeInput;
-  node.cells[5].childNodes[0].setAttribute("class", "btn btn-danger d-block");
-  node.cells[5].childNodes[0].setAttribute("id", "removeBtn");
-  //   console.log(nodeInput);
-  document.getElementsByClassName("btn btn-danger").class =
-    "btn btn-danger d-block";
+  node.cells[5].childNodes[0].setAttribute("class", "btn btn-danger d_flex margin_top2");
   document.querySelector("#addNewRowHere").appendChild(node);
 }
 
@@ -47,11 +43,7 @@ function showNumberError(curInput) {
 function validateTable() {
   let errClass = document.getElementsByClassName("error");
   //console.log(errClass)
-  if (errClass.length == 0) {
-    validate = true;
-  } else {
-    validate = false;
-  }
+  errClass.length == 0 ? validate = true : validate = false;
   return validate;
 }
 
@@ -67,7 +59,6 @@ function Submit() {
     mainErrShow.innerHTML = "*please enter all correct detail to show result";
   }
 }
-
 
 function getData() {
   const data = inputDataTable.rows;
@@ -90,7 +81,12 @@ function generateTable(array) {
   const tableNode = document.createElement("table");
   tableNode.setAttribute("class", "table table-bordered table-hover");
   tableNode.setAttribute("id", "genratedTable");
-  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th><th scope="col">Name <button onclick="sortTable2('name')" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Subject <button onclick="sortTable(2)" class="rounded-circle"><i class="bi bi-arrow-down-up"></i></button></th><th scope="col">Marks</th><th scope="col">Result</th></tr></thead><tbody></tbody>`;
+  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th>
+  <th style="min-width: 142px;" scope="col">Name <button onclick="sortTable('name','asc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down"></i></button>
+  <button onclick="sortTable('name','desc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down-alt"></i></button></th>
+  <th style="min-width: 150px;" scope="col">Subject <button onclick="sortTable('subject','asc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down"></i></button>
+  <button onclick="sortTable('subject','desc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down-alt"></i></button></th>
+  <th scope="col">Marks</th><th scope="col">Result</th></tr></thead><tbody></tbody>`;
 
   array.map((item, index, array) => {
     const currRow = document.createElement("tr");
@@ -127,100 +123,29 @@ function generateTable(array) {
   document.getElementById("addTable").innerHTML = tableNode.outerHTML;
 }
 
-function searchTable() {
-
-  let inputStr = document.getElementById("searchInput").value.toUpperCase();
-  let genTable = document.getElementById("genratedTable");
-  let tableRows = genTable.rows;
-
-  for (let i = 1; i < tableRows.length; i++) {
-    let tableCell1 = tableRows[i].cells[1];
-    let tableCell2 = tableRows[i].cells[2];
-
-    if (tableCell1 || tableCell2) {
-      let txtValue1 = tableCell1.textContent || tableCell1.innerText;
-      let txtValue2 = tableCell2.textContent || tableCell2.innerText;
-      if (txtValue1.toUpperCase().indexOf(inputStr) > -1 || txtValue2.toUpperCase().indexOf(inputStr) > -1) {
-        tableRows[i].style.display = "";
-      } else {
-        tableRows[i].style.display = "none";
-      }
-    }
-  }
-}
-
-function sortTable2(element) {
-  let sortedArray = [];
-  let direction = true;
-
+function sortTable(element, direction) {
   sortedArray = getData().sort((a, b) => {
-    //console.log(a[element]);
     const nameA = a[element].toUpperCase();
     const nameB = b[element].toUpperCase();
 
-    if (direction) {
-      if (nameA > nameB) {
-        return -1;
-      }
-      if (nameA < nameB) {
-        return 1;
-      }
-      return 0;
-    } else {
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
+    if (direction == "desc") {
+      return ((nameA > nameB) ? -1 : ((nameA < nameB) ? 1 : 0))
     }
-
+    else if (direction == "asc") {
+      return ((nameA < nameB) ? -1 : ((nameA > nameB) ? 1 : 0))
+    }
   });
-
   generateTable(sortedArray);
 }
 
-function sortTable(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("genratedTable");
-  switching = true;
-  dir = "asc";
+function searchTable() {
 
-  while (switching) {
-    switching = false;
-    rows = table.rows;
-
-    for (i = 1; i < (rows.length - 1); i++) {
-      shouldSwitch = false;
-
-      x = rows[i].cells[n];
-      rows[i].cells[0].innerText = i;
-      rows[i + 1].cells[0].innerText = i + 1;
-      y = rows[i + 1].cells[n];
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      switchcount++;
-    } else {
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
+  let inputStr = document.getElementById("searchInput").value.toUpperCase();
+  let newArray = getData().filter(function (el) {
+    //console.log(el.name)
+    return el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr)
+  });
+  generateTable(newArray);
 }
 
 function addRandomData() {
