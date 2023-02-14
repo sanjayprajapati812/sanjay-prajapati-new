@@ -1,6 +1,8 @@
 const inputDataTable = document.querySelector("#inputDataTable");
 const nodeInput = inputDataTable.rows[1].innerHTML;
 var regName = /^[a-zA-Z ]*$/;
+const data = inputDataTable.rows;
+
 
 var validate = false;
 
@@ -53,15 +55,15 @@ function Submit() {
   if (validateTable()) {
     container2.style.display = "block"
     mainErrShow.innerHTML = "";
-    generateTable(getData());
+    generateTable(getData(data));
   } else {
     container2.style.display = "none"
     mainErrShow.innerHTML = "*please enter all correct detail to show result";
   }
 }
 
-function getData() {
-  const data = inputDataTable.rows;
+function getData(data) {
+
   let dataArray = [];
 
   for (let i = 1; i < data.length; i++) {
@@ -70,6 +72,22 @@ function getData() {
     dataObj.name = data[i].cells[1].childNodes[0].value;
     dataObj.subject = data[i].cells[2].childNodes[0].value;
     dataObj.mark = data[i].cells[3].childNodes[0].value;
+
+    dataArray.push(dataObj);
+
+  }
+  return dataArray;
+}
+function getReportData(data) {
+
+  let dataArray = [];
+
+  for (let i = 1; i < data.length; i++) {
+
+    let dataObj = new Object();
+    dataObj.name = data[i].cells[1].innerText;
+    dataObj.subject = data[i].cells[2].innerText;
+    dataObj.mark = data[i].cells[3].innerText;
 
     dataArray.push(dataObj);
 
@@ -123,8 +141,13 @@ function generateTable(array) {
   document.getElementById("addTable").innerHTML = tableNode.outerHTML;
 }
 
+
+const reportDataTable = document.querySelector("#genratedTable");
+const reportData = reportDataTable.rows;
+
+
 function sortTable(element, direction) {
-  sortedArray = getData().sort((a, b) => {
+  sortedArray = getReportData(reportData).sort((a, b) => {
     const nameA = a[element].toUpperCase();
     const nameB = b[element].toUpperCase();
 
@@ -141,7 +164,7 @@ function sortTable(element, direction) {
 function searchTable() {
 
   let inputStr = document.getElementById("searchInput").value.toUpperCase();
-  let newArray = getData().filter(function (el) {
+  let newArray = getReportData(reportData).filter(function (el) {
     //console.log(el.name)
     return el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr)
   });
