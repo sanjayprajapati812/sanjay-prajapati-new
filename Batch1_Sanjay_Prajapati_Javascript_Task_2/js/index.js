@@ -266,7 +266,7 @@ function generatePersentageTable(data) {
     let tdNodeName = curRow.insertCell(1);
     tdNodeName.innerText = element.name;
     let tdNodePersentage = curRow.insertCell(2);
-    tdNodePersentage.innerText = Persentage + "%"
+    tdNodePersentage.innerText = Persentage.toFixed(2) + "%"
 
     const tdNodeRes = curRow.insertCell(3);
     if (!Persentage) {
