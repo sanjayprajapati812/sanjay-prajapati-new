@@ -229,10 +229,10 @@ function findOccTotalMark(arr) {
 
   arr.forEach((x) => {
 
-    if (arr2.some((val) => { return val.name == x.name })) {
+    if (arr2.some((val) => { return val.name.toUpperCase() == x.name.toUpperCase() })) {
 
       arr2.forEach((k) => {
-        if (k.name === x.name) {
+        if (k.name.toUpperCase() === x.name.toUpperCase()) {
           k["occurence"]++
           k["totalMark"] += parseInt(x.mark);
         }
@@ -254,7 +254,7 @@ function generatePersentageTable(data) {
   tableNode.setAttribute("id", "persentageTable");
   tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th>
   <th scope="col">Name </th>
-  <th scope="col">Persentage</th><th scope="col">Final Result</th></thead><tbody></tbody>`;
+  <th scope="col">Percentage</th><th scope="col">Final Result</th></thead><tbody></tbody>`;
 
   data.map((element) => {
 
@@ -286,7 +286,6 @@ function generatePersentageTable(data) {
 }
 
 function btnAcceptReject(currClass) {
-  console.log()
   if (currClass.className == "btn btn-outline-success me-2 btnPF" || currClass.className == "btn btn-success me-2 btnPF") {
     currClass.setAttribute("class", "btn btn-success me-2 btnPF")
     currClass.nextSibling.setAttribute("class", "btn btn-outline-danger btnPF")
