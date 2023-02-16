@@ -2,9 +2,8 @@ const inputDataTable = document.querySelector("#inputDataTable");
 const nodeInput = inputDataTable.rows[1].innerHTML;
 var regName = /^[a-zA-Z ]*$/;
 const data = inputDataTable.rows;
-
-
 var validate = false;
+var curRow;
 
 function addNewRow() {
   const node = document.createElement("tr");
@@ -13,11 +12,20 @@ function addNewRow() {
   document.querySelector("#addNewRowHere").appendChild(node);
 }
 
-function removeRow(curRow) {
-  curRow.parentNode.parentNode.remove();
+function getIndex(curRowindex) {
+  curRow = curRowindex.parentNode.parentNode.rowIndex;
+}
+function deleteRow() {
+  document.getElementById("inputDataTable").deleteRow(curRow);
+  let node = document.createElement("div")
+  node.setAttribute("class", "positionFixed alert alert-dismissible fade show alert-success")
+  node.setAttribute("role", "alert")
+  node.innerText = "Record deleted successfully"
+  document.body.append(node)
+  setTimeout(function myFun() { node.remove() }, 2000)
 }
 
-const errDiv = document.createElement("div")
+var errDiv = document.createElement("div")
 errDiv.setAttribute("class", "text-danger")
 
 function showNameError(curInput) {
@@ -56,6 +64,8 @@ function Submit() {
     container2.style.display = "block"
     mainErrShow.innerHTML = "";
     generateTable(getData(data));
+    generatePersentageTable(findOccTotalMark(getData(data)));
+    //console.log(findOcc(getData(data)));
   } else {
     container2.style.display = "none"
     mainErrShow.innerHTML = "*please enter all correct detail to show result";
@@ -78,27 +88,28 @@ function getData(data) {
   }
   return dataArray;
 }
-function getReportData(data) {
+function getReportData() {
 
+  let data = reportTable.rows;
   let dataArray = [];
 
   for (let i = 1; i < data.length; i++) {
 
     let dataObj = new Object();
+    dataObj.id = i;
     dataObj.name = data[i].cells[1].innerText;
     dataObj.subject = data[i].cells[2].innerText;
     dataObj.mark = data[i].cells[3].innerText;
-
+    dataObj.result = data[i].cells[4].innerText;
     dataArray.push(dataObj);
-
   }
   return dataArray;
 }
 
 function generateTable(array) {
   const tableNode = document.createElement("table");
-  tableNode.setAttribute("class", "table table-bordered table-hover");
-  tableNode.setAttribute("id", "genratedTable");
+  tableNode.setAttribute("class", "table table-bordered table-hover reportTbl");
+  tableNode.setAttribute("id", "reportTable");
   tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th>
   <th style="min-width: 142px;" scope="col">Name <button onclick="sortTable('name','asc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down"></i></button>
   <button onclick="sortTable('name','desc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down-alt"></i></button></th>
@@ -111,7 +122,6 @@ function generateTable(array) {
     tableNode.childNodes[1].appendChild(currRow);
 
     const tdNodeIndex = currRow.insertCell(0);
-    tdNodeIndex.innerText = index + 1;
 
     const tdNodeName = currRow.insertCell(1);
     tdNodeName.innerText = item.name ? item.name : "-";
@@ -124,7 +134,7 @@ function generateTable(array) {
     // console.log(item)
 
     const tdNodeRes = currRow.insertCell(4);
-    if (!item.mark) {
+    if (!item.mark || item.mark == "-") {
       tdNodeRes.innerText = "--";
       currRow.setAttribute("class", "table-warning");
     }
@@ -141,16 +151,10 @@ function generateTable(array) {
   document.getElementById("addTable").innerHTML = tableNode.outerHTML;
 }
 
-
-const reportDataTable = document.querySelector("#genratedTable");
-const reportData = reportDataTable.rows;
-
-
 function sortTable(element, direction) {
-  sortedArray = getReportData(reportData).sort((a, b) => {
-    const nameA = a[element].toUpperCase();
-    const nameB = b[element].toUpperCase();
-
+  sortedArray = searchTable().sort((a, b) => {
+    let nameA = a[element].toUpperCase();
+    let nameB = b[element].toUpperCase();
     if (direction == "desc") {
       return ((nameA > nameB) ? -1 : ((nameA < nameB) ? 1 : 0))
     }
@@ -161,14 +165,23 @@ function sortTable(element, direction) {
   generateTable(sortedArray);
 }
 
+
 function searchTable() {
 
+  generateTable(getData(data));
   let inputStr = document.getElementById("searchInput").value.toUpperCase();
-  let newArray = getReportData(reportData).filter(function (el) {
-    //console.log(el.name)
-    return el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr)
+  let newArray = getReportData().filter(function (el) {
+    return el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr) || el.result.toUpperCase().includes(inputStr)
   });
-  generateTable(newArray);
+
+  getReportData().map((item) => {
+    reportTable.rows[item.id].style.display = "none"
+  })
+
+  newArray.map((item) => {
+    reportTable.rows[item.id].style.display = ""
+  })
+  return newArray
 }
 
 function addRandomData() {
@@ -208,5 +221,77 @@ function addRandomData() {
     inputDataTable.rows[i].cells[1].childNodes[0].value = randomArray[n].name
     inputDataTable.rows[i].cells[2].childNodes[0].value = randomArray[n].subject
     inputDataTable.rows[i].cells[3].childNodes[0].value = randomArray[n].marks
+  }
+}
+
+function findOccTotalMark(arr) {
+  let arr2 = [];
+
+  arr.forEach((x) => {
+
+    if (arr2.some((val) => { return val.name == x.name })) {
+
+      arr2.forEach((k) => {
+        if (k.name === x.name) {
+          k["occurence"]++
+          k["totalMark"] += parseInt(x.mark);
+        }
+      })
+    } else {
+      let a = {}
+      a.name = x.name
+      a["occurence"] = 1;
+      a["totalMark"] = parseInt(x.mark);
+      arr2.push(a);
+    }
+  })
+  return arr2;
+}
+
+function generatePersentageTable(data) {
+  const tableNode = document.createElement("table");
+  tableNode.setAttribute("class", "table table-bordered table-hover reportTbl");
+  tableNode.setAttribute("id", "persentageTable");
+  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th>
+  <th scope="col">Name </th>
+  <th scope="col">Persentage</th><th scope="col">Final Result</th></thead><tbody></tbody>`;
+
+  data.map((element) => {
+
+    let Persentage = (parseInt(element.totalMark) / parseInt(element.occurence));
+
+    const curRow = document.createElement("tr");
+    tableNode.childNodes[1].appendChild(curRow);
+    let tdNodeIndex = curRow.insertCell(0);
+    let tdNodeName = curRow.insertCell(1);
+    tdNodeName.innerText = element.name;
+    let tdNodePersentage = curRow.insertCell(2);
+    tdNodePersentage.innerText = Persentage + "%"
+
+    const tdNodeRes = curRow.insertCell(3);
+    if (!Persentage) {
+      tdNodeRes.innerText = "--";
+      curRow.setAttribute("class", "table-warning");
+    }
+    else if (Persentage < 33) {
+      tdNodeRes.innerText = "Fail";
+      curRow.setAttribute("class", "table-danger");
+    } else {
+      tdNodeRes.innerText = "Pass";
+      curRow.setAttribute("class", "table-info");
+    }
+  })
+
+  document.getElementById("addPerTable").innerHTML = tableNode.outerHTML;
+}
+
+function btnAcceptReject(currClass) {
+  console.log()
+  if (currClass.className == "btn btn-outline-success me-2 btnPF" || currClass.className == "btn btn-success me-2 btnPF") {
+    currClass.setAttribute("class", "btn btn-success me-2 btnPF")
+    currClass.nextSibling.setAttribute("class", "btn btn-outline-danger btnPF")
+  } if (currClass.className == "btn btn-outline-danger btnPF" || currClass.className == "btn btn-danger btnPF") {
+    currClass.setAttribute("class", "btn btn-danger btnPF")
+    currClass.previousSibling.setAttribute("class", "btn btn-outline-success me-2 btnPF")
   }
 }

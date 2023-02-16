@@ -2,9 +2,29 @@ body {
   counter-reset: Serial;
 }
 
-tbody tr th:first-child:before {
+div {
+  counter-reset: SerialSub;
+}
+
+.positionFixed {
+  position: fixed;
+  top: 10px;
+  max-width: 300px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: green;
+  color: white;
+
+}
+
+.inputTable tbody tr th:first-child:before {
   counter-increment: Serial;
   content: counter(Serial);
+}
+
+.reportTbl tbody tr td:first-child:before {
+  counter-increment: SerialSub;
+  content: counter(SerialSub);
 }
 
 .error {
@@ -48,6 +68,11 @@ tbody tr th:first-child:before {
   display: flex;
 }
 
+.btn {
+  border-width: 2px;
+  font-weight: 500;
+}
+
 @media screen and (max-width: 1000px) {
   .container {
     padding: 10px !important;
@@ -75,6 +100,7 @@ tbody tr th:first-child:before {
   .margin_top {
     margin-top: 10px;
   }
+
   .margin_top2 {
     margin-top: 30px;
   }

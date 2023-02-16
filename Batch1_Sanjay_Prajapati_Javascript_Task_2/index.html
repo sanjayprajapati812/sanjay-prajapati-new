@@ -43,112 +43,168 @@
                                                 <tbody id="addNewRowHere">
                                                         <tr>
                                                                 <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control name" id=""
-                                                                                placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control subject" id=""
-                                                                                placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input onkeyup="showNumberError(this)"
+                                                                <td data-label="Name"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control name"
+                                                                                id="" placeholder="Enter Name"></td>
+                                                                <td data-label="subject"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control subject"
+                                                                                id="" placeholder="Enter Subject"></td>
+                                                                <td data-label="Marks"><input
+                                                                                onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button"
-                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
-                                                                                        type="button"
-                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
+                                                                                        type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
                                                                         </div>
                                                                 </td>
-                                                                <td data-label="Action"><button onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Remove</button>
+                                                                <td data-label="Action"><button onclick="getIndex(this)"
+                                                                                type="button" data-bs-toggle="modal"
+                                                                                data-bs-target="#exampleModal"
+                                                                                class="d-none">Delete</button>
+                                                                        <div class="modal fade" id="exampleModal"
+                                                                                tabindex="-1"
+                                                                                aria-labelledby="exampleModalLabel"
+                                                                                aria-hidden="true">
+                                                                                <div class="modal-dialog">
+                                                                                        <div class="modal-content">
+                                                                                                <div
+                                                                                                        class="modal-header">
+                                                                                                        <h5 class="modal-title"
+                                                                                                                id="exampleModalLabel">
+                                                                                                                Alert
+                                                                                                        </h5>
+                                                                                                        <button type="button"
+                                                                                                                class="btn-close"
+                                                                                                                data-bs-dismiss="modal"
+                                                                                                                aria-label="Close"></button>
+                                                                                                </div>
+                                                                                                <div class="modal-body">
+                                                                                                        Are you really
+                                                                                                        want to delete
+                                                                                                        record?
+                                                                                                </div>
+                                                                                                <div
+                                                                                                        class="modal-footer">
+                                                                                                        <button type="button"
+                                                                                                                class="btn btn-secondary"
+                                                                                                                data-bs-dismiss="modal">Close</button>
+                                                                                                        <button type="button"
+                                                                                                                class="btn btn-primary"
+                                                                                                                data-bs-dismiss="modal"
+                                                                                                                onclick="deleteRow()">Yes</button>
+                                                                                                </div>
+                                                                                        </div>
+                                                                                </div>
+                                                                        </div>
                                                                 </td>
                                                         </tr>
                                                         <tr>
                                                                 <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control name" id=""
-                                                                                placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control subject" id=""
-                                                                                placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input onkeyup="showNumberError(this)"
+                                                                <td data-label="Name"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control name"
+                                                                                id="" placeholder="Enter Name"></td>
+                                                                <td data-label="subject"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control subject"
+                                                                                id="" placeholder="Enter Subject"></td>
+                                                                <td data-label="Marks"><input
+                                                                                onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button"
-                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
-                                                                                        type="button"
-                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
+                                                                                        type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
                                                                         </div>
                                                                 </td>
-                                                                <td data-label="Action"><button onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Remove</button>
+                                                                <td data-label="Action"><button
+                                                                                onclick="removeRow(this)" type="button"
+                                                                                class="d-none">Delete</button>
                                                                 </td>
                                                         </tr>
                                                         <tr>
                                                                 <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control name" id=""
-                                                                                placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control subject" id=""
-                                                                                placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input onkeyup="showNumberError(this)"
+                                                                <td data-label="Name"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control name"
+                                                                                id="" placeholder="Enter Name"></td>
+                                                                <td data-label="subject"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control subject"
+                                                                                id="" placeholder="Enter Subject"></td>
+                                                                <td data-label="Marks"><input
+                                                                                onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button"
-                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
-                                                                                        type="button"
-                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
+                                                                                        type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
                                                                         </div>
                                                                 </td>
-                                                                <td data-label="Action"><button onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Remove</button>
+                                                                <td data-label="Action"><button
+                                                                                onclick="removeRow(this)" type="button"
+                                                                                class="d-none">Delete</button>
                                                                 </td>
                                                         </tr>
                                                         <tr>
                                                                 <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control name" id=""
-                                                                                placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control subject" id=""
-                                                                                placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input onkeyup="showNumberError(this)"
+                                                                <td data-label="Name"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control name"
+                                                                                id="" placeholder="Enter Name"></td>
+                                                                <td data-label="subject"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control subject"
+                                                                                id="" placeholder="Enter Subject"></td>
+                                                                <td data-label="Marks"><input
+                                                                                onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button"
-                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
-                                                                                        type="button"
-                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
+                                                                                        type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
                                                                         </div>
                                                                 </td>
-                                                                <td data-label="Action"><button onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Remove</button>
+                                                                <td data-label="Action"><button
+                                                                                onclick="removeRow(this)" type="button"
+                                                                                class="d-none">Delete</button>
                                                                 </td>
                                                         </tr>
                                                         <tr>
                                                                 <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control name" id=""
-                                                                                placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input onkeyup="showNameError(this)" type="text"
-                                                                                class="form-control subject" id=""
-                                                                                placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input onkeyup="showNumberError(this)"
+                                                                <td data-label="Name"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control name"
+                                                                                id="" placeholder="Enter Name"></td>
+                                                                <td data-label="subject"><input
+                                                                                onkeyup="showNameError(this)"
+                                                                                type="text" class="form-control subject"
+                                                                                id="" placeholder="Enter Subject"></td>
+                                                                <td data-label="Marks"><input
+                                                                                onkeyup="showNumberError(this)"
                                                                                 type="number" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button"
-                                                                                        class="btn btn-success me-2 btnPF">Pass</button><button
-                                                                                        type="button"
-                                                                                        class="btn btn-warning btnPF">Fail</button>
+                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
+                                                                                        type="button" onclick="btnAcceptReject(this)"
+                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
                                                                         </div>
                                                                 </td>
-                                                                <td data-label="Action"><button onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Remove</button>
+                                                                <td data-label="Action"><button onclick="btnAcceptReject(this)"
+                                                                                onclick="removeRow(this)" type="button"
+                                                                                class="d-none">Delete</button>
                                                                 </td>
                                                         </tr>
 
@@ -172,17 +228,41 @@
                 <div class="row mt-5">
                         <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12" id="search">
                                 <input id="searchInput" onkeyup="searchTable()" type="text"
-                                        class="form-control d-inline" placeholder="Search Name OR Subject" />
+                                        class="form-control d-inline"
+                                        placeholder="Search by Name or Subject or Result" />
                         </div>
-                        <div class="col-lg-4 col-md-4 col-sm-2 col-xs-12"><button onclick="searchTable()" class="btn btn-primary btnResponsive margin_top">Search</button></div>
+                        <div class="col-lg-4 col-md-4 col-sm-2 col-xs-12"><button onclick="searchTable()"
+                                        class="btn btn-primary btnResponsive margin_top">Search</button></div>
                 </div>
                 <div class="row mt-5">
                         <div class="col table-responsive" id="addTable">
 
                         </div>
                 </div>
+                <div class="row mt-5">
+                        <div class="col">
+                                <h5 class="text-center">Persentage Table</h5>
+                        </div>
+
+                </div>
+
+                <div class="row">
+                        <div class="col table-responsive" id="addPerTable">
+
+                        </div>
+                </div>
         </div>
 </body>
+<script>
+
+        var myModal = document.getElementById('myModal')
+        var myInput = document.getElementById('myInput')
+
+        myModal.addEventListener('shown.bs.modal', function () {
+                myInput.focus()
+        })
+
+</script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
