@@ -14,8 +14,8 @@
 </head>
 
 <body class="bg-light">
-        <div style="background: #adb5bd;" class="container mt-4 py-1 pb-4 px-5">
-                <h2 class="text-center">Students Detail</h2>
+        <div style="background: #adb5bd;" class="container py-1 pb-4 px-5">
+                <h2 class="text-center mt-1">Students Detail</h2>
                 <div class="row mt-4">
                         <div class="col">
                                 <button id="addNewBtn" onclick="addNewRow()" type="button"
@@ -53,7 +53,7 @@
                                                                                 id="" placeholder="Enter Subject"></td>
                                                                 <td data-label="Marks"><input
                                                                                 onkeyup="showNumberError(this)"
-                                                                                type="number" class="form-control marks"
+                                                                                type="text" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
                                                                         <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
@@ -115,7 +115,7 @@
                                                                                 id="" placeholder="Enter Subject"></td>
                                                                 <td data-label="Marks"><input
                                                                                 onkeyup="showNumberError(this)"
-                                                                                type="number" class="form-control marks"
+                                                                                type="text" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
                                                                         <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
@@ -141,7 +141,7 @@
                                                                                 id="" placeholder="Enter Subject"></td>
                                                                 <td data-label="Marks"><input
                                                                                 onkeyup="showNumberError(this)"
-                                                                                type="number" class="form-control marks"
+                                                                                type="text" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
                                                                         <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
@@ -167,7 +167,7 @@
                                                                                 id="" placeholder="Enter Subject"></td>
                                                                 <td data-label="Marks"><input
                                                                                 onkeyup="showNumberError(this)"
-                                                                                type="number" class="form-control marks"
+                                                                                type="text" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
                                                                         <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
@@ -193,7 +193,7 @@
                                                                                 id="" placeholder="Enter Subject"></td>
                                                                 <td data-label="Marks"><input
                                                                                 onkeyup="showNumberError(this)"
-                                                                                type="number" class="form-control marks"
+                                                                                type="text" class="form-control marks"
                                                                                 id="" placeholder="Enter Marks"></td>
                                                                 <td data-label="Result">
                                                                         <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
@@ -235,6 +235,12 @@
                                         class="btn btn-primary btnResponsive margin_top">Search</button></div>
                 </div>
                 <div class="row mt-5">
+                        <div class="col">
+                                <h5 class="text-center">Report Table</h5>
+                        </div>
+
+                </div>
+                <div class="row mt-1">
                         <div class="col table-responsive" id="addTable">
 
                         </div>
@@ -246,7 +252,7 @@
 
                 </div>
 
-                <div class="row">
+                <div class="row mt-1">
                         <div class="col table-responsive" id="addPerTable">
 
                         </div>

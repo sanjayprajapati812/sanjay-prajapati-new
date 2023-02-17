@@ -30,7 +30,7 @@ errDiv.setAttribute("class", "text-danger")
 
 function showNameError(curInput) {
   curInput.parentNode.appendChild(errDiv);
-  if (!regName.test(curInput.value)) {
+  if (!regName.test(curInput.value)||!curInput.value) {
     curInput.setAttribute("class", "form-control error");
     errDiv.innerText = "Please enter valid input";
   } else {
@@ -41,7 +41,7 @@ function showNameError(curInput) {
 
 function showNumberError(curInput) {
   curInput.parentNode.appendChild(errDiv);
-  if (Number(curInput.value) < 0 || curInput.value > 100) {
+  if (parseInt(curInput.value) < 0 || parseInt(curInput.value) > 100 || curInput.value == "e") {
     curInput.setAttribute("class", "form-control error");
     errDiv.innerText = "Please enter valid input";
   } else {
@@ -288,9 +288,9 @@ function generatePersentageTable(data) {
 function btnAcceptReject(currClass) {
   if (currClass.className == "btn btn-outline-success me-2 btnPF" || currClass.className == "btn btn-success me-2 btnPF") {
     currClass.setAttribute("class", "btn btn-success me-2 btnPF")
-    currClass.nextSibling.setAttribute("class", "btn btn-outline-danger btnPF")
+    currClass.nextElementSibling.setAttribute("class", "btn btn-outline-danger btnPF")
   } if (currClass.className == "btn btn-outline-danger btnPF" || currClass.className == "btn btn-danger btnPF") {
     currClass.setAttribute("class", "btn btn-danger btnPF")
-    currClass.previousSibling.setAttribute("class", "btn btn-outline-success me-2 btnPF")
+    currClass.previousElementSibling.setAttribute("class", "btn btn-outline-success me-2 btnPF")
   }
 }
