@@ -6,13 +6,18 @@ div {
   counter-reset: SerialSub;
 }
 
+.container{
+  max-width: 1400px;
+  width: 100%;
+}
+
 .positionFixed {
   position: fixed;
   top: 10px;
-  max-width: 300px;
+  max-width: 500px;
   left: 50%;
   transform: translate(-50%, 0);
-  background-color: green;
+  background-color: rgb(94, 177, 35);
   color: white;
 
 }
@@ -79,7 +84,7 @@ div {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 
   body {
     margin: 0px !important;
@@ -88,7 +93,7 @@ div {
 
   .container {
     padding: 10px !important;
-    width: 100% !important;
+    max-width: 400px !important;
   }
 
   .btnResponsive {

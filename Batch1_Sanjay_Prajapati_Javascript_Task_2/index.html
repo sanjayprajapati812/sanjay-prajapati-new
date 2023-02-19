@@ -1,277 +1,517 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS Task-2</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
 
-<head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>JS Task-2</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-                integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-                crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="./css/style.css">
-</head>
-
-<body class="bg-light">
-        <div style="background: #adb5bd;" class="container py-1 pb-4 px-5">
-                <h2 class="text-center mt-1">Students Detail</h2>
-                <div class="row mt-4">
-                        <div class="col">
-                                <button id="addNewBtn" onclick="addNewRow()" type="button"
-                                        class="btn btn-primary me-3 btnResponsive">+ Add
-                                        New</button>
-                                <button id="addNewBtn" onclick="addRandomData()" type="button"
-                                        class="btn btn-primary btnResponsive">Add Random Data</button>
-                        </div>
-                </div>
-                <div class="row mt-4">
-                        <div class="col table-responsive">
-                                <form class="needs-validation" id="form" action="">
-                                        <table id="inputDataTable"
-                                                class="inputTable table table-bordered table-hover table-primary">
-                                                <thead>
-                                                        <tr class="table-dark">
-                                                                <th scope="col">No.</th>
-                                                                <th scope="col">Name</th>
-                                                                <th scope="col">Subject</th>
-                                                                <th scope="col">Marks</th>
-                                                                <th scope="col">Result</th>
-                                                                <th scope="col">Action</th>
-                                                        </tr>
-                                                </thead>
-                                                <tbody id="addNewRowHere">
-                                                        <tr>
-                                                                <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control name"
-                                                                                id="" placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control subject"
-                                                                                id="" placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input
-                                                                                onkeyup="showNumberError(this)"
-                                                                                type="text" class="form-control marks"
-                                                                                id="" placeholder="Enter Marks"></td>
-                                                                <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
-                                                                                        type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
-                                                                        </div>
-                                                                </td>
-                                                                <td data-label="Action"><button onclick="getIndex(this)"
-                                                                                type="button" data-bs-toggle="modal"
-                                                                                data-bs-target="#exampleModal"
-                                                                                class="d-none">Delete</button>
-                                                                        <div class="modal fade" id="exampleModal"
-                                                                                tabindex="-1"
-                                                                                aria-labelledby="exampleModalLabel"
-                                                                                aria-hidden="true">
-                                                                                <div class="modal-dialog">
-                                                                                        <div class="modal-content">
-                                                                                                <div
-                                                                                                        class="modal-header">
-                                                                                                        <h5 class="modal-title"
-                                                                                                                id="exampleModalLabel">
-                                                                                                                Alert
-                                                                                                        </h5>
-                                                                                                        <button type="button"
-                                                                                                                class="btn-close"
-                                                                                                                data-bs-dismiss="modal"
-                                                                                                                aria-label="Close"></button>
-                                                                                                </div>
-                                                                                                <div class="modal-body">
-                                                                                                        Are you really
-                                                                                                        want to delete
-                                                                                                        record?
-                                                                                                </div>
-                                                                                                <div
-                                                                                                        class="modal-footer">
-                                                                                                        <button type="button"
-                                                                                                                class="btn btn-secondary"
-                                                                                                                data-bs-dismiss="modal">Close</button>
-                                                                                                        <button type="button"
-                                                                                                                class="btn btn-primary"
-                                                                                                                data-bs-dismiss="modal"
-                                                                                                                onclick="deleteRow()">Yes</button>
-                                                                                                </div>
-                                                                                        </div>
-                                                                                </div>
-                                                                        </div>
-                                                                </td>
-                                                        </tr>
-                                                        <tr>
-                                                                <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control name"
-                                                                                id="" placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control subject"
-                                                                                id="" placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input
-                                                                                onkeyup="showNumberError(this)"
-                                                                                type="text" class="form-control marks"
-                                                                                id="" placeholder="Enter Marks"></td>
-                                                                <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
-                                                                                        type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
-                                                                        </div>
-                                                                </td>
-                                                                <td data-label="Action"><button
-                                                                                onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Delete</button>
-                                                                </td>
-                                                        </tr>
-                                                        <tr>
-                                                                <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control name"
-                                                                                id="" placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control subject"
-                                                                                id="" placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input
-                                                                                onkeyup="showNumberError(this)"
-                                                                                type="text" class="form-control marks"
-                                                                                id="" placeholder="Enter Marks"></td>
-                                                                <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
-                                                                                        type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
-                                                                        </div>
-                                                                </td>
-                                                                <td data-label="Action"><button
-                                                                                onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Delete</button>
-                                                                </td>
-                                                        </tr>
-                                                        <tr>
-                                                                <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control name"
-                                                                                id="" placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control subject"
-                                                                                id="" placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input
-                                                                                onkeyup="showNumberError(this)"
-                                                                                type="text" class="form-control marks"
-                                                                                id="" placeholder="Enter Marks"></td>
-                                                                <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
-                                                                                        type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
-                                                                        </div>
-                                                                </td>
-                                                                <td data-label="Action"><button
-                                                                                onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Delete</button>
-                                                                </td>
-                                                        </tr>
-                                                        <tr>
-                                                                <th data-label="No." scope="row"></th>
-                                                                <td data-label="Name"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control name"
-                                                                                id="" placeholder="Enter Name"></td>
-                                                                <td data-label="subject"><input
-                                                                                onkeyup="showNameError(this)"
-                                                                                type="text" class="form-control subject"
-                                                                                id="" placeholder="Enter Subject"></td>
-                                                                <td data-label="Marks"><input
-                                                                                onkeyup="showNumberError(this)"
-                                                                                type="text" class="form-control marks"
-                                                                                id="" placeholder="Enter Marks"></td>
-                                                                <td data-label="Result">
-                                                                        <div class="d_flex"><button type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-success me-2 btnPF">Accept</button><button
-                                                                                        type="button" onclick="btnAcceptReject(this)"
-                                                                                        class="btn btn-outline-danger btnPF">Reject</button>
-                                                                        </div>
-                                                                </td>
-                                                                <td data-label="Action"><button onclick="btnAcceptReject(this)"
-                                                                                onclick="removeRow(this)" type="button"
-                                                                                class="d-none">Delete</button>
-                                                                </td>
-                                                        </tr>
-
-                                                </tbody>
-                                        </table>
-                                </form>
-                        </div>
-                </div>
-                <div class="row">
-                        <div class="col"><button onclick="Submit()" type="button"
-                                        class="btn btn-primary mt-3 btnResponsive">Save and
-                                        Show</button></div>
-                </div>
-                <div class="row mt-3">
-                        <div id="mainErrShow" class="col text-danger">
-
-                        </div>
-                </div>
+  <body class="bg-light">
+    <div style="background: #adb5bd" class="container py-1 pb-4 px-5">
+      <h2 class="text-center mt-1">Students Detail</h2>
+      <div class="row mt-4">
+        <div class="col">
+          <button
+            id="addNewBtn"
+            onclick="addNewRow()"
+            type="button"
+            class="btn btn-primary me-3 btnResponsive"
+          >
+            + Add New
+          </button>
+          <button
+            id="addNewBtn"
+            onclick="addRandomData()"
+            type="button"
+            class="btn btn-primary btnResponsive"
+          >
+            Add Random Data
+          </button>
         </div>
-        <div id="container2" style="display: none; background: #adb5bd;" class="container mt-3 py-1 px-5">
-                <div class="row mt-5">
-                        <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12" id="search">
-                                <input id="searchInput" onkeyup="searchTable()" type="text"
-                                        class="form-control d-inline"
-                                        placeholder="Search by Name or Subject or Result" />
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-2 col-xs-12"><button onclick="searchTable()"
-                                        class="btn btn-primary btnResponsive margin_top">Search</button></div>
-                </div>
-                <div class="row mt-5">
-                        <div class="col">
-                                <h5 class="text-center">Report Table</h5>
-                        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col table-responsive">
+          <form class="needs-validation" novalidate>
+            <table
+              id="inputDataTable"
+              class="inputTable table table-bordered table-hover table-primary"
+            >
+              <thead>
+                <tr class="table-dark">
+                  <th scope="col">No.</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Subject</th>
+                  <th scope="col">Marks</th>
+                  <th scope="col">Result</th>
+                  <th style="min-width: 100px" scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody id="addNewRowHere">
+                <tr isAccepted>
+                  <th data-label="No." scope="row"></th>
+                  <td data-label="Name">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Name"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,20}"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="subject">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Subject"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,40}"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="Marks">
+                    <input
+                      type="text"
+                      class="form-control marks"
+                      placeholder="Enter Marks"
+                      min="0"
+                      max="100"
+                      pattern="(100|([0]?[0]?[0]?[0]?[0-9]?[0-9]))"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter valid marks</div>
+                  </td>
+                  <td data-label="Result">
+                    <div class="d_flex">
+                      <button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-success me-2 btnPF"
+                      >
+                        Accept</button
+                      ><button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-danger btnPF"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </td>
+                  <td data-label="Action">
+                    <button
+                      onclick="getIndex(this)"
+                      type="button"
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      class="d-none"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr isAccepted>
+                  <th data-label="No." scope="row"></th>
+                  <td data-label="Name">
+                    <input
+                      type="text"
+                      class="form-control"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,20}"
+                      placeholder="Enter Name"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="subject">
+                    <input
+                      type="text"
+                      class="form-control"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,40}"
+                      placeholder="Enter Subject"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="Marks">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Enter Marks"
+                      pattern="(100|([0]?[0]?[0]?[0]?[0-9]?[0-9]))"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter valid marks</div>
+                  </td>
 
-                </div>
-                <div class="row mt-1">
-                        <div class="col table-responsive" id="addTable">
-
-                        </div>
-                </div>
-                <div class="row mt-5">
-                        <div class="col">
-                                <h5 class="text-center">Percentage Table</h5>
-                        </div>
-
-                </div>
-
-                <div class="row mt-1">
-                        <div class="col table-responsive" id="addPerTable">
-
-                        </div>
-                </div>
+                  <td data-label="Result">
+                    <div class="d_flex">
+                      <button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-success me-2 btnPF"
+                      >
+                        Accept</button
+                      ><button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-danger btnPF"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </td>
+                  <td data-label="Action">
+                    <button
+                      onclick="removeRow(this)"
+                      type="button"
+                      class="d-none"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr isAccepted>
+                  <th data-label="No." scope="row"></th>
+                  <td data-label="Name">
+                    <input
+                      type="text"
+                      class="form-control name"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,20}"
+                      placeholder="Enter Name"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="subject">
+                    <input
+                      type="text"
+                      class="form-control subject"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,40}"
+                      placeholder="Enter Subject"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="Marks">
+                    <input
+                      type="text"
+                      class="form-control marks"
+                      pattern="(100|([0]?[0]?[0]?[0]?[0-9]?[0-9]))"
+                      placeholder="Enter Marks"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter valid marks</div>
+                  </td>
+                  <td data-label="Result">
+                    <div class="d_flex">
+                      <button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-success me-2 btnPF"
+                      >
+                        Accept</button
+                      ><button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-danger btnPF"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </td>
+                  <td data-label="Action">
+                    <button
+                      onclick="removeRow(this)"
+                      type="button"
+                      class="d-none"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr isAccepted>
+                  <th data-label="No." scope="row"></th>
+                  <td data-label="Name">
+                    <input
+                      type="text"
+                      class="form-control name"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,20}"
+                      placeholder="Enter Name"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="subject">
+                    <input
+                      type="text"
+                      class="form-control subject"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,40}"
+                      placeholder="Enter Subject"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="Marks">
+                    <input
+                      type="text"
+                      class="form-control marks"
+                      placeholder="Enter Marks"
+                      pattern="(100|([0]?[0]?[0]?[0]?[0-9]?[0-9]))"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter valid marks</div>
+                  </td>
+                  <td data-label="Result">
+                    <div class="d_flex">
+                      <button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-success me-2 btnPF"
+                      >
+                        Accept</button
+                      ><button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-danger btnPF"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </td>
+                  <td data-label="Action">
+                    <button
+                      onclick="removeRow(this)"
+                      type="button"
+                      class="d-none"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+                <tr isAccepted>
+                  <th data-label="No." scope="row"></th>
+                  <td data-label="Name">
+                    <input
+                      type="text"
+                      class="form-control name"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,20}"
+                      placeholder="Enter Name"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="subject">
+                    <input
+                      type="text"
+                      class="form-control subject"
+                      pattern="[a-zA-Z][a-zA-Z ]{0,40}"
+                      placeholder="Enter Subject"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter text only.</div>
+                  </td>
+                  <td data-label="Marks">
+                    <input
+                      type="text"
+                      class="form-control marks"
+                      pattern="(100|([0]?[0]?[0]?[0]?[0-9]?[0-9]))"
+                      placeholder="Enter Marks"
+                      required
+                    />
+                    <div class="invalid-feedback">Please enter valid marks</div>
+                  </td>
+                  <td data-label="Result">
+                    <div class="d_flex">
+                      <button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-success me-2 btnPF"
+                      >
+                        Accept</button
+                      ><button
+                        type="button"
+                        onclick="btnAcceptReject(this)"
+                        class="btn btn-outline-danger btnPF"
+                      >
+                        Reject
+                      </button>
+                    </div>
+                  </td>
+                  <td data-label="Action">
+                    <button
+                      onclick="btnAcceptReject(this)"
+                      onclick="removeRow(this)"
+                      type="button"
+                      class="d-none"
+                    >
+                      Delete
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
         </div>
-</body>
-<script>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button
+            id="subBtn"
+            type="button"
+            class="btn btn-primary mt-3 btnResponsive"
+          >
+            Save and Show
+          </button>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div id="mainErrShow" class="col text-danger fs-5"></div>
+      </div>
+    </div>
+    <div
+      id="container2"
+      style="display: none; background: #adb5bd"
+      class="container mt-3 py-1 px-5"
+    >
+      <div class="row mt-5">
+        <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12" id="search">
+          <input
+            id="searchInput"
+            onkeyup="searchTable()"
+            type="text"
+            class="form-control d-inline"
+            placeholder="Search by Name or Subject or Result"
+          />
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-2 col-xs-12">
+          <button
+            onclick="searchTable()"
+            class="btn btn-primary btnResponsive margin_top"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col">
+          <h5 class="text-center">Report Table</h5>
+        </div>
+      </div>
+      <div class="row mt-1">
+        <div class="col table-responsive" id="addTable">
+          <table
+            class="table table-bordered table-hover reportTbl"
+            id="reportTable"
+          >
+            <thead>
+              <tr class="table-dark">
+                <th scope="col">No</th>
+                <th style="min-width: 142px" scope="col">
+                  Name
+                  <button
+                    onclick="sortTable('name','asc')"
+                    class="rounded-circle border-0"
+                  >
+                    <i class="bi bi-sort-alpha-down"></i>
+                  </button>
+                  <button
+                    onclick="sortTable('name','desc')"
+                    class="rounded-circle border-0"
+                  >
+                    <i class="bi bi-sort-alpha-down-alt"></i>
+                  </button>
+                </th>
+                <th style="min-width: 150px" scope="col">
+                  Subject
+                  <button
+                    onclick="sortTable('subject','asc')"
+                    class="rounded-circle border-0"
+                  >
+                    <i class="bi bi-sort-alpha-down"></i>
+                  </button>
+                  <button
+                    onclick="sortTable('subject','desc')"
+                    class="rounded-circle border-0"
+                  >
+                    <i class="bi bi-sort-alpha-down-alt"></i>
+                  </button>
+                </th>
+                <th scope="col">Marks</th>
+                <th scope="col">Result</th>
+              </tr>
+            </thead>
+            <tbody id="reportTblBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col">
+          <h5 class="text-center">Percentage Table</h5>
+        </div>
+      </div>
 
-        var myModal = document.getElementById('myModal')
-        var myInput = document.getElementById('myInput')
+      <div class="row mt-1">
+        <div class="col table-responsive" id="addPerTable"></div>
+      </div>
+    </div>
 
-        myModal.addEventListener('shown.bs.modal', function () {
-                myInput.focus()
-        })
-
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
-<script src="./js/index.js"></script>
-
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">Are you really want to delete record?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+              onclick="deleteRow()"
+            >
+              Yes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <script src="./js/index.js"></script>
 </html>

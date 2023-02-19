@@ -1,20 +1,23 @@
 const inputDataTable = document.querySelector("#inputDataTable");
 const nodeInput = inputDataTable.rows[1].innerHTML;
 var regName = /^[a-zA-Z ]*$/;
-const data = inputDataTable.rows;
-var validate = false;
+const data = document.getElementById("addNewRowHere").rows;
 var curRow;
+
+validateTable()
 
 function addNewRow() {
   const node = document.createElement("tr");
+  node.setAttribute("isAccepted", "")
   node.innerHTML = nodeInput;
-  node.cells[5].childNodes[0].setAttribute("class", "btn btn-danger d_flex margin_top2");
+  node.cells[5].children[0].setAttribute("class", "btn btn-danger d_flex margin_top2");
   document.querySelector("#addNewRowHere").appendChild(node);
 }
 
 function getIndex(curRowindex) {
-  curRow = curRowindex.parentNode.parentNode.rowIndex;
+  curRow = curRowindex.parentElement.parentElement.rowIndex;
 }
+
 function deleteRow() {
   document.getElementById("inputDataTable").deleteRow(curRow);
   let node = document.createElement("div")
@@ -25,101 +28,51 @@ function deleteRow() {
   setTimeout(function myFun() { node.remove() }, 2000)
 }
 
-var errDiv = document.createElement("div")
-errDiv.setAttribute("class", "text-danger")
-
-function showNameError(curInput) {
-  curInput.parentNode.appendChild(errDiv);
-  if (!regName.test(curInput.value)||!curInput.value) {
-    curInput.setAttribute("class", "form-control error");
-    errDiv.innerText = "Please enter valid input";
-  } else {
-    curInput.setAttribute("class", "form-control");
-    errDiv.innerText = "";
-  }
-}
-
-function showNumberError(curInput) {
-  curInput.parentNode.appendChild(errDiv);
-  if (parseInt(curInput.value) < 0 || parseInt(curInput.value) > 100 || curInput.value == "e") {
-    curInput.setAttribute("class", "form-control error");
-    errDiv.innerText = "Please enter valid input";
-  } else {
-    curInput.setAttribute("class", "form-control");
-    errDiv.innerText = "";
-  }
-}
-
-function validateTable() {
-  let errClass = document.getElementsByClassName("error");
-  //console.log(errClass)
-  errClass.length == 0 ? validate = true : validate = false;
-  return validate;
-}
-
-function Submit() {
-  const mainErrShow = document.getElementById("mainErrShow");
-  const container2 = document.getElementById("container2");
-  if (validateTable()) {
-    container2.style.display = "block"
-    mainErrShow.innerHTML = "";
-    generateTable(getData(data));
-    generatePersentageTable(findOccTotalMark(getData(data)));
-    //console.log(findOcc(getData(data)));
-  } else {
-    container2.style.display = "none"
-    mainErrShow.innerHTML = "*please enter all correct detail to show result";
-  }
-}
-
 function getData(data) {
 
   let dataArray = [];
+  Array.from(data).forEach((tr, rowIndex) => {
+    if (tr.getAttribute("isAccepted") == "yes") {
+      let dataObj = new Object();
+      dataObj.name = tr.cells[1].children[0].value;
+      dataObj.subject = tr.cells[2].children[0].value;
+      dataObj.mark = tr.cells[3].children[0].value;
+      dataObj.isAccept = tr.getAttribute("isAccepted");
 
-  for (let i = 1; i < data.length; i++) {
+      dataArray.push(dataObj);
+    }
 
-    let dataObj = new Object();
-    dataObj.name = data[i].cells[1].childNodes[0].value;
-    dataObj.subject = data[i].cells[2].childNodes[0].value;
-    dataObj.mark = data[i].cells[3].childNodes[0].value;
+  })
 
-    dataArray.push(dataObj);
-
-  }
   return dataArray;
 }
 function getReportData() {
 
-  let data = reportTable.rows;
+  let reportData = document.getElementById("reportTblBody").rows;
+  console.log(data)
   let dataArray = [];
 
-  for (let i = 1; i < data.length; i++) {
-
+  Array.from(reportData).forEach((tr, rowIndex) => {
     let dataObj = new Object();
-    dataObj.id = i;
-    dataObj.name = data[i].cells[1].innerText;
-    dataObj.subject = data[i].cells[2].innerText;
-    dataObj.mark = data[i].cells[3].innerText;
-    dataObj.result = data[i].cells[4].innerText;
+    dataObj.id = rowIndex;
+    dataObj.name = tr.cells[1].innerText;
+    dataObj.subject = tr.cells[2].innerText;
+    dataObj.mark = tr.cells[3].innerText;
+    dataObj.result = tr.cells[4].innerText;
     dataArray.push(dataObj);
-  }
+  })
+
   return dataArray;
 }
 
 function generateTable(array) {
-  const tableNode = document.createElement("table");
-  tableNode.setAttribute("class", "table table-bordered table-hover reportTbl");
-  tableNode.setAttribute("id", "reportTable");
-  tableNode.innerHTML = `<thead><tr class="table-dark"><th scope="col">No</th>
-  <th style="min-width: 142px;" scope="col">Name <button onclick="sortTable('name','asc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down"></i></button>
-  <button onclick="sortTable('name','desc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down-alt"></i></button></th>
-  <th style="min-width: 150px;" scope="col">Subject <button onclick="sortTable('subject','asc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down"></i></button>
-  <button onclick="sortTable('subject','desc')" class="rounded-circle border-0"><i class="bi bi-sort-alpha-down-alt"></i></button></th>
-  <th scope="col">Marks</th><th scope="col">Result</th></tr></thead><tbody></tbody>`;
+
+  const tableNode = document.getElementById("reportTable");
+  document.getElementById("reportTblBody").innerHTML = ""
 
   array.map((item, index, array) => {
     const currRow = document.createElement("tr");
-    tableNode.childNodes[1].appendChild(currRow);
+    tableNode.children[1].appendChild(currRow);
 
     const tdNodeIndex = currRow.insertCell(0);
 
@@ -147,8 +100,6 @@ function generateTable(array) {
     }
     //currRow.appendChild(tdNodeRes);
   })
-
-  document.getElementById("addTable").innerHTML = tableNode.outerHTML;
 }
 
 function sortTable(element, direction) {
@@ -167,7 +118,6 @@ function sortTable(element, direction) {
 
 
 function searchTable() {
-
   generateTable(getData(data));
   let inputStr = document.getElementById("searchInput").value.toUpperCase();
   let newArray = getReportData().filter(function (el) {
@@ -175,11 +125,11 @@ function searchTable() {
   });
 
   getReportData().map((item) => {
-    reportTable.rows[item.id].style.display = "none"
+    reportTable.rows[item.id + 1].style.display = "none"
   })
 
   newArray.map((item) => {
-    reportTable.rows[item.id].style.display = ""
+    reportTable.rows[item.id + 1].style.display = ""
   })
   return newArray
 }
@@ -218,9 +168,9 @@ function addRandomData() {
 
   for (let i = 1; i < insertInputValues.length; i++) {
     let n = Math.floor(Math.random() * 25);
-    inputDataTable.rows[i].cells[1].childNodes[0].value = randomArray[n].name
-    inputDataTable.rows[i].cells[2].childNodes[0].value = randomArray[n].subject
-    inputDataTable.rows[i].cells[3].childNodes[0].value = randomArray[n].marks
+    inputDataTable.rows[i].cells[1].children[0].value = randomArray[n].name
+    inputDataTable.rows[i].cells[2].children[0].value = randomArray[n].subject
+    inputDataTable.rows[i].cells[3].children[0].value = randomArray[n].marks
   }
 }
 
@@ -261,8 +211,8 @@ function generatePersentageTable(data) {
     let Persentage = (parseInt(element.totalMark) / parseInt(element.occurence));
 
     const curRow = document.createElement("tr");
-    tableNode.childNodes[1].appendChild(curRow);
-    let tdNodeIndex = curRow.insertCell(0);
+    tableNode.children[1].appendChild(curRow);
+    curRow.insertCell(0);
     let tdNodeName = curRow.insertCell(1);
     tdNodeName.innerText = element.name;
     let tdNodePersentage = curRow.insertCell(2);
@@ -286,11 +236,46 @@ function generatePersentageTable(data) {
 }
 
 function btnAcceptReject(currClass) {
-  if (currClass.className == "btn btn-outline-success me-2 btnPF" || currClass.className == "btn btn-success me-2 btnPF") {
+  if (currClass.className == "btn btn-outline-success me-2 btnPF") {
     currClass.setAttribute("class", "btn btn-success me-2 btnPF")
     currClass.nextElementSibling.setAttribute("class", "btn btn-outline-danger btnPF")
-  } if (currClass.className == "btn btn-outline-danger btnPF" || currClass.className == "btn btn-danger btnPF") {
+    currClass.parentElement.parentElement.parentElement.setAttribute("isAccepted", "yes")
+  }
+  if (currClass.className == "btn btn-outline-danger btnPF") {
     currClass.setAttribute("class", "btn btn-danger btnPF")
     currClass.previousElementSibling.setAttribute("class", "btn btn-outline-success me-2 btnPF")
+    currClass.parentElement.parentElement.parentElement.setAttribute("isAccepted", "no")
   }
+}
+
+function validateTable() {
+  'use strict'
+
+  let forms = document.querySelectorAll('.needs-validation')
+  let subBtn = document.getElementById("subBtn");
+  let mainErrShow = document.getElementById("mainErrShow");
+  let container2 = document.getElementById("container2");
+
+  Array.prototype.slice.call(forms).forEach(function (form) {
+    subBtn.addEventListener('click', function (event) {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+        container2.style.display = "none"
+        mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
+      }
+      else if (getData(data).length == 0) {
+        container2.style.display = "none"
+        mainErrShow.innerHTML = "*Please Accept atleast one or more to show Report!";
+      } else {
+        container2.style.display = "block"
+        mainErrShow.innerHTML = "";
+        generateTable(getData(data));
+        console.log(getData(data));
+        generatePersentageTable(findOccTotalMark(getData(data)));
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
 }
