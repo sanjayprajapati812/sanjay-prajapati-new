@@ -1,10 +1,11 @@
 const inputDataTable = document.querySelector("#inputDataTable");
 const nodeInput = inputDataTable.rows[1].innerHTML;
 var regName = /^[a-zA-Z ]*$/;
+var regNumber = /^(\d{1,2}|100)$/;
 const data = document.getElementById("addNewRowHere").rows;
 var curRow;
 
-validateTable()
+submit()
 
 function addNewRow() {
   const node = document.createElement("tr");
@@ -49,12 +50,11 @@ function getData(data) {
 function getReportData() {
 
   let reportData = document.getElementById("reportTblBody").rows;
-  console.log(data)
   let dataArray = [];
 
   Array.from(reportData).forEach((tr, rowIndex) => {
     let dataObj = new Object();
-    dataObj.id = rowIndex;
+    dataObj.id = rowIndex + 1;
     dataObj.name = tr.cells[1].innerText;
     dataObj.subject = tr.cells[2].innerText;
     dataObj.mark = tr.cells[3].innerText;
@@ -125,11 +125,11 @@ function searchTable() {
   });
 
   getReportData().map((item) => {
-    reportTable.rows[item.id + 1].style.display = "none"
+    reportTable.rows[item.id].style.display = "none"
   })
 
   newArray.map((item) => {
-    reportTable.rows[item.id + 1].style.display = ""
+    reportTable.rows[item.id].style.display = ""
   })
   return newArray
 }
@@ -172,6 +172,7 @@ function addRandomData() {
     inputDataTable.rows[i].cells[2].children[0].value = randomArray[n].subject
     inputDataTable.rows[i].cells[3].children[0].value = randomArray[n].marks
   }
+  checkValidity()
 }
 
 function findOccTotalMark(arr) {
@@ -248,34 +249,68 @@ function btnAcceptReject(currClass) {
   }
 }
 
-function validateTable() {
-  'use strict'
+function conditionName(tr, i, validate) {
+  if (!regName.test(tr.cells[i].children[0].value) || !(tr.cells[i].children[0].value.trim())) {
+    tr.cells[i].children[0].setAttribute("class", "form-control error")
+    tr.cells[i].children[1].innerHTML = "*Please enter text only value"
+    return validate = false
+  } else {
+    tr.cells[i].children[0].setAttribute("class", "form-control")
+    tr.cells[i].children[1].innerHTML = ""
+  }
+  return validate
+}
 
-  let forms = document.querySelectorAll('.needs-validation')
+function conditionNumber(tr, validate) {
+  if (!regNumber.test(parseInt(tr.cells[3].children[0].value))) {
+    tr.cells[3].children[0].setAttribute("class", "form-control error")
+    tr.cells[3].children[1].innerHTML = "*Please enter valid marks(0-100)"
+    return validate = false;
+  } else {
+    tr.cells[3].children[0].setAttribute("class", "form-control")
+    tr.cells[3].children[1].innerHTML = ""
+  }
+  return validate
+}
+
+function checkValidity() {
+  let validate = true;
+
+  Array.from(data).forEach((tr, rowIndex) => {
+
+    validate = conditionName(tr, 1, validate);
+    validate = conditionName(tr, 2, validate);
+    validate = conditionNumber(tr, validate);
+
+    tr.cells[1].children[0].addEventListener("keyup", (e) => conditionName(tr, 1))
+    tr.cells[2].children[0].addEventListener("keyup", (e) => conditionName(tr, 2))
+    tr.cells[3].children[0].addEventListener("keyup", (e) => conditionNumber(tr))
+
+  })
+  return validate;
+}
+
+function submit() {
+
   let subBtn = document.getElementById("subBtn");
   let mainErrShow = document.getElementById("mainErrShow");
   let container2 = document.getElementById("container2");
 
-  Array.prototype.slice.call(forms).forEach(function (form) {
-    subBtn.addEventListener('click', function (event) {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-        container2.style.display = "none"
-        mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
-      }
-      else if (getData(data).length == 0) {
-        container2.style.display = "none"
-        mainErrShow.innerHTML = "*Please Accept atleast one or more to show Report!";
-      } else {
-        container2.style.display = "block"
-        mainErrShow.innerHTML = "";
-        generateTable(getData(data));
-        console.log(getData(data));
-        generatePersentageTable(findOccTotalMark(getData(data)));
-      }
 
-      form.classList.add('was-validated')
-    }, false)
+  subBtn.addEventListener('click', function (event) {
+    if (!checkValidity()) {
+      container2.style.display = "none"
+      mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
+    }
+    else if (getData(data).length == 0) {
+      container2.style.display = "none"
+      mainErrShow.innerHTML = "*Please Accept atleast one or more to show Report!";
+    } else {
+      container2.style.display = "block"
+      mainErrShow.innerHTML = "";
+      generateTable(getData(data));
+      generatePersentageTable(findOccTotalMark(getData(data)));
+    }
+
   })
 }
