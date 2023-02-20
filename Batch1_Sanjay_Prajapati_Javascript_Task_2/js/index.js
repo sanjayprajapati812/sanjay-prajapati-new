@@ -5,7 +5,7 @@ var regNumber = /^(\d{1,2}|100)$/;
 const data = document.getElementById("addNewRowHere").rows;
 var curRow;
 
-submit()
+submit();
 
 function addNewRow() {
   const node = document.createElement("tr");
@@ -32,7 +32,7 @@ function deleteRow() {
 function getData(data) {
 
   let dataArray = [];
-  Array.from(data).forEach((tr, rowIndex) => {
+  Array.from(data).forEach((tr) => {
     if (tr.getAttribute("isAccepted") == "yes") {
       let dataObj = new Object();
       dataObj.name = tr.cells[1].children[0].value;
@@ -276,15 +276,15 @@ function conditionNumber(tr, validate) {
 function checkValidity() {
   let validate = true;
 
-  Array.from(data).forEach((tr, rowIndex) => {
+  Array.from(data).forEach((tr) => {
 
     validate = conditionName(tr, 1, validate);
     validate = conditionName(tr, 2, validate);
     validate = conditionNumber(tr, validate);
 
-    tr.cells[1].children[0].addEventListener("keyup", (e) => conditionName(tr, 1))
-    tr.cells[2].children[0].addEventListener("keyup", (e) => conditionName(tr, 2))
-    tr.cells[3].children[0].addEventListener("keyup", (e) => conditionNumber(tr))
+    tr.cells[1].children[0].addEventListener("keyup", () => conditionName(tr, 1))
+    tr.cells[2].children[0].addEventListener("keyup", () => conditionName(tr, 2))
+    tr.cells[3].children[0].addEventListener("keyup", () => conditionNumber(tr))
 
   })
   return validate;
@@ -296,8 +296,7 @@ function submit() {
   let mainErrShow = document.getElementById("mainErrShow");
   let container2 = document.getElementById("container2");
 
-
-  subBtn.addEventListener('click', function (event) {
+  subBtn.addEventListener('click', function () {
     if (!checkValidity()) {
       container2.style.display = "none"
       mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
