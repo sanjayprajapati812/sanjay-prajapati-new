@@ -5,8 +5,6 @@ var regNumber = /^(\d{1,2}|100)$/;
 const data = document.getElementById("addNewRowHere").rows;
 var curRow;
 
-submit();
-
 function addNewRow() {
   const node = document.createElement("tr");
   node.setAttribute("isAccepted", "")
@@ -70,12 +68,11 @@ function generateTable(array) {
   const tableNode = document.getElementById("reportTable");
   document.getElementById("reportTblBody").innerHTML = ""
 
-  array.map((item, index, array) => {
+  array.map((item) => {
     const currRow = document.createElement("tr");
     tableNode.children[1].appendChild(currRow);
 
-    const tdNodeIndex = currRow.insertCell(0);
-
+    currRow.insertCell(0);
     const tdNodeName = currRow.insertCell(1);
     tdNodeName.innerText = item.name ? item.name : "-";
 
@@ -189,8 +186,8 @@ function findOccTotalMark(arr) {
         }
       })
     } else {
-      let a = {}
-      a.name = x.name
+      let a = {};
+      a.name = x.name;
       a["occurence"] = 1;
       a["totalMark"] = parseInt(x.mark);
       arr2.push(a);
@@ -249,7 +246,7 @@ function btnAcceptReject(currClass) {
   }
 }
 
-function conditionName(tr, i, validate) {
+function showNameError(tr, i, validate) {
   if (!regName.test(tr.cells[i].children[0].value) || !(tr.cells[i].children[0].value.trim())) {
     tr.cells[i].children[0].setAttribute("class", "form-control error")
     tr.cells[i].children[1].innerHTML = "*Please enter text only value"
@@ -261,7 +258,7 @@ function conditionName(tr, i, validate) {
   return validate
 }
 
-function conditionNumber(tr, validate) {
+function showNumberError(tr, validate) {
   if (!regNumber.test(parseInt(tr.cells[3].children[0].value))) {
     tr.cells[3].children[0].setAttribute("class", "form-control error")
     tr.cells[3].children[1].innerHTML = "*Please enter valid marks(0-100)"
@@ -278,38 +275,39 @@ function checkValidity() {
 
   Array.from(data).forEach((tr) => {
 
-    validate = conditionName(tr, 1, validate);
-    validate = conditionName(tr, 2, validate);
-    validate = conditionNumber(tr, validate);
+    validate = showNameError(tr, 1, validate);
+    validate = showNameError(tr, 2, validate);
+    validate = showNumberError(tr, validate);
 
-    tr.cells[1].children[0].addEventListener("keyup", () => conditionName(tr, 1))
-    tr.cells[2].children[0].addEventListener("keyup", () => conditionName(tr, 2))
-    tr.cells[3].children[0].addEventListener("keyup", () => conditionNumber(tr))
+    tr.cells[1].children[0].addEventListener("keyup", () => showNameError(tr, 1))
+    tr.cells[2].children[0].addEventListener("keyup", () => showNameError(tr, 2))
+    tr.cells[3].children[0].addEventListener("keyup", () => showNumberError(tr))
+
+    // tr.cells[1].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 1, true)) if (e.keyCode == 9) e.preventDefault()})
+    // tr.cells[2].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 2, true)) if (e.keyCode == 9) e.preventDefault()})
+    // tr.cells[3].children[0].addEventListener("keydown", (e) => { if (!showNumberError(tr, true)) if (e.keyCode == 9) e.preventDefault()})
 
   })
   return validate;
 }
 
-function submit() {
+var subBtn = document.getElementById("subBtn");
 
-  let subBtn = document.getElementById("subBtn");
+subBtn.addEventListener('click', function () {
+
   let mainErrShow = document.getElementById("mainErrShow");
   let container2 = document.getElementById("container2");
-
-  subBtn.addEventListener('click', function () {
-    if (!checkValidity()) {
-      container2.style.display = "none"
-      mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
-    }
-    else if (getData(data).length == 0) {
-      container2.style.display = "none"
-      mainErrShow.innerHTML = "*Please Accept atleast one or more to show Report!";
-    } else {
-      container2.style.display = "block"
-      mainErrShow.innerHTML = "";
-      generateTable(getData(data));
-      generatePersentageTable(findOccTotalMark(getData(data)));
-    }
-
-  })
-}
+  if (!checkValidity()) {
+    container2.style.display = "none"
+    mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
+  }
+  else if (getData(data).length == 0) {
+    container2.style.display = "none"
+    mainErrShow.innerHTML = "*Please Accept atleast one or more to show Report!";
+  } else {
+    container2.style.display = "block"
+    mainErrShow.innerHTML = "";
+    generateTable(getData(data));
+    generatePersentageTable(findOccTotalMark(getData(data)));
+  }
+})
