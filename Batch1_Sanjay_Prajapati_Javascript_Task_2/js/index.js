@@ -283,9 +283,9 @@ function checkValidity() {
     tr.cells[2].children[0].addEventListener("keyup", () => showNameError(tr, 2))
     tr.cells[3].children[0].addEventListener("keyup", () => showNumberError(tr))
 
-    // tr.cells[1].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 1, true)) if (e.keyCode == 9) e.preventDefault()})
-    // tr.cells[2].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 2, true)) if (e.keyCode == 9) e.preventDefault()})
-    // tr.cells[3].children[0].addEventListener("keydown", (e) => { if (!showNumberError(tr, true)) if (e.keyCode == 9) e.preventDefault()})
+    tr.cells[1].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 1, true)) if (e.keyCode == 9) e.preventDefault()})
+    tr.cells[2].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 2, true)) if (e.keyCode == 9) e.preventDefault()})
+    tr.cells[3].children[0].addEventListener("keydown", (e) => { if (!showNumberError(tr, true)) if (e.keyCode == 9) e.preventDefault()})
 
   })
   return validate;
