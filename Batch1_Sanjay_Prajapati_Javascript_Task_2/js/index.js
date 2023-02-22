@@ -4,6 +4,7 @@ var regName = /^[a-zA-Z ]*$/;
 var regNumber = /^(\d{1,2}|100)$/;
 const data = document.getElementById("addNewRowHere").rows;
 var curRow;
+var dataNTC = [];
 
 function addNewRow() {
   const node = document.createElement("tr");
@@ -42,9 +43,10 @@ function getData(data) {
     }
 
   })
-
+  dataNTC = dataArray;
   return dataArray;
 }
+
 function getReportData() {
 
   let reportData = document.getElementById("reportTblBody").rows;
@@ -59,7 +61,6 @@ function getReportData() {
     dataObj.result = tr.cells[4].innerText;
     dataArray.push(dataObj);
   })
-
   return dataArray;
 }
 
@@ -68,7 +69,7 @@ function generateTable(array) {
   const tableNode = document.getElementById("reportTable");
   document.getElementById("reportTblBody").innerHTML = ""
 
-  array.map((item) => {
+  array.forEach((item) => {
     const currRow = document.createElement("tr");
     tableNode.children[1].appendChild(currRow);
 
@@ -115,19 +116,20 @@ function sortTable(element, direction) {
 
 
 function searchTable() {
-  generateTable(getData(data));
+  generateTable(dataNTC)
   let inputStr = document.getElementById("searchInput").value.toUpperCase();
   let newArray = getReportData().filter(function (el) {
     return el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr) || el.result.toUpperCase().includes(inputStr)
   });
 
-  getReportData().map((item) => {
-    reportTable.rows[item.id].style.display = "none"
+  getReportData().forEach((item) => {
+    if (newArray.some((val) => { return val.name.toUpperCase() == item.name.toUpperCase() })) {
+      reportTable.rows[item.id].style.display = ""
+    } else {
+      reportTable.rows[item.id].style.display = "none"
+    }
   })
 
-  newArray.map((item) => {
-    reportTable.rows[item.id].style.display = ""
-  })
   return newArray
 }
 
@@ -204,7 +206,7 @@ function generatePersentageTable(data) {
   <th scope="col">Name </th>
   <th scope="col">Percentage</th><th scope="col">Final Result</th></thead><tbody></tbody>`;
 
-  data.map((element) => {
+  data.forEach((element) => {
 
     let Persentage = (parseInt(element.totalMark) / parseInt(element.occurence));
 
@@ -283,9 +285,9 @@ function checkValidity() {
     tr.cells[2].children[0].addEventListener("keyup", () => showNameError(tr, 2))
     tr.cells[3].children[0].addEventListener("keyup", () => showNumberError(tr))
 
-    tr.cells[1].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 1, true)) if (e.keyCode == 9) e.preventDefault()})
-    tr.cells[2].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 2, true)) if (e.keyCode == 9) e.preventDefault()})
-    tr.cells[3].children[0].addEventListener("keydown", (e) => { if (!showNumberError(tr, true)) if (e.keyCode == 9) e.preventDefault()})
+    tr.cells[1].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 1, true)) if (e.keyCode == 9) e.preventDefault() })
+    tr.cells[2].children[0].addEventListener("keydown", (e) => { if (!showNameError(tr, 2, true)) if (e.keyCode == 9) e.preventDefault() })
+    tr.cells[3].children[0].addEventListener("keydown", (e) => { if (!showNumberError(tr, true)) if (e.keyCode == 9) e.preventDefault() })
 
   })
   return validate;
@@ -300,10 +302,6 @@ subBtn.addEventListener('click', function () {
   if (!checkValidity()) {
     container2.style.display = "none"
     mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
-  }
-  else if (getData(data).length == 0) {
-    container2.style.display = "none"
-    mainErrShow.innerHTML = "*Please Accept atleast one or more to show Report!";
   } else {
     container2.style.display = "block"
     mainErrShow.innerHTML = "";
