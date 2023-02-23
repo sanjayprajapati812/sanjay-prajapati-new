@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jquery Task 1</title>
+    <link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div style="background: #adb5bd" class="container py-1 pb-4 px-5">
+        <h2 class="text-center mt-1">Students Detail</h2>
+        <div class="row mt-4">
+            <div class="col">
+                <button id="addNewBtn" type="button" class="btn btn-primary me-3 btnResponsive">
+                    + Add New
+                </button>
+                <button id="addRandom" type="button" class="btn btn-primary btnResponsive">
+                    Add Random Data
+                </button>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col table-responsive">
+                <form class="needs-validation" novalidate>
+                    <table id="inputDataTable" class="inputTable table table-bordered table-hover table-primary">
+                        <thead>
+                            <tr class="table-dark">
+                                <th scope="col">No.</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col" style="min-width: 240px;">Marks</th>
+                                <th scope="col">Result</th>
+                                <th style="min-width: 100px" scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="addNewRowHere">
+                            <tr isAccepted>
+                                <th data-label="No." scope="row"></th>
+                                <td data-label="Name">
+                                    <input type="text" class="form-control" placeholder="Enter Name" value="sanjay" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="subject">
+                                    <input type="text" class="form-control" placeholder="Enter Subject"
+                                        value="english" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Marks">
+                                    <input type="number" onkeypress="return /[0-9]/i.test(event.key)"
+                                        class="form-control" placeholder="Enter Marks" min="0" max="100" value="100" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Result">
+                                    <div class="d_flex">
+                                        <button type="button" class="btn btn-outline-success me-2 btnPF">
+                                            Accept</button><button type="button" class="btn btn-outline-danger btnPF">
+                                            Reject
+                                        </button>
+                                    </div>
+                                </td>
+                                <td data-label="Action">
+                                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                        class="d-none">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr isAccepted>
+                                <th data-label="No." scope="row"></th>
+                                <td data-label="Name">
+                                    <input type="text" class="form-control" placeholder="Enter Name" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="subject">
+                                    <input type="text" class="form-control" placeholder="Enter Subject" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Marks">
+                                    <input type="number" onkeypress="return /[0-9]/i.test(event.key)" type="text"
+                                        class="form-control" placeholder="Enter Marks" min="0" max="100" />
+                                    <div class="invalid"></div>
+                                </td>
+
+                                <td data-label="Result">
+                                    <div class="d_flex">
+                                        <button type="button" class="btn btn-outline-success me-2 btnPF">
+                                            Accept</button><button type="button" class="btn btn-outline-danger btnPF">
+                                            Reject
+                                        </button>
+                                    </div>
+                                </td>
+                                <td data-label="Action">
+                                    <button type="button" class="d-none">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr isAccepted>
+                                <th data-label="No." scope="row"></th>
+                                <td data-label="Name">
+                                    <input type="text" class="form-control name" placeholder="Enter Name" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="subject">
+                                    <input type="text" class="form-control subject" placeholder="Enter Subject" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Marks">
+                                    <input type="number" onkeypress="return /[0-9]/i.test(event.key)" type="text"
+                                        class="form-control" placeholder="Enter Marks" min="0" max="100" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Result">
+                                    <div class="d_flex">
+                                        <button type="button" class="btn btn-outline-success me-2 btnPF">
+                                            Accept</button><button type="button" class="btn btn-outline-danger btnPF">
+                                            Reject
+                                        </button>
+                                    </div>
+                                </td>
+                                <td data-label="Action">
+                                    <button type="button" class="d-none">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr isAccepted>
+                                <th data-label="No." scope="row"></th>
+                                <td data-label="Name">
+                                    <input type="text" class="form-control name" placeholder="Enter Name" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="subject">
+                                    <input type="text" class="form-control subject" placeholder="Enter Subject" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Marks">
+                                    <input type="number" onkeypress="return /[0-9]/i.test(event.key)" type="text"
+                                        class="form-control" placeholder="Enter Marks" min="0" max="100" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Result">
+                                    <div class="d_flex">
+                                        <button type="button" class="btn btn-outline-success me-2 btnPF">
+                                            Accept</button><button type="button" class="btn btn-outline-danger btnPF">
+                                            Reject
+                                        </button>
+                                    </div>
+                                </td>
+                                <td data-label="Action">
+                                    <button type="button" class="d-none">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr isAccepted>
+                                <th data-label="No." scope="row"></th>
+                                <td data-label="Name">
+                                    <input type="text" class="form-control name" placeholder="Enter Name" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="subject">
+                                    <input type="text" class="form-control subject" placeholder="Enter Subject" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Marks">
+                                    <input type="number" onkeypress="return /[0-9]/i.test(event.key)" type="text"
+                                        class="form-control" placeholder="Enter Marks" min="0" max="100" />
+                                    <div class="invalid"></div>
+                                </td>
+                                <td data-label="Result">
+                                    <div class="d_flex">
+                                        <button type="button" class="btn btn-outline-success me-2 btnPF">
+                                            Accept</button><button type="button" class="btn btn-outline-danger btnPF">
+                                            Reject
+                                        </button>
+                                    </div>
+                                </td>
+                                <td data-label="Action">
+                                    <button type="button" class="d-none">
+                                        Delete
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button id="subBtn" type="button" class="btn btn-primary mt-3 btnResponsive">
+                    Save
+                </button>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div id="mainErrShow" class="col text-danger fs-5"></div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Alert</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">Are you really want to delete record?</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                    <button id="removeRow" type="button" class="btn btn-primary" data-bs-dismiss="modal">
+                        Yes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./jquery/jquery-3.6.3.min.js"></script>
+<script src="./bootstrap/bootstrap.bundle.min.js"></script>
+<script src="./js/index.js"></script>
+
+</html>
