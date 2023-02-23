@@ -14,18 +14,14 @@ $(document).ready(function () {
     });
 
     $("#addNewBtn").click(function () {
-        let node = document.createElement("tr")
-        node.innerHTML = $("#addNewRowHere").find('tr').eq(0).prop('outerHTML');
-        node.cells[5].children[0].setAttribute("class", "btn btn-danger removeBtn d_flex margin_top2");
+        let node = $("#addNewRowHere").find('tr').eq(0).prop('outerHTML').replace("d-none", "btn btn-danger removeBtn d_flex margin_top2");
         $("#addNewRowHere").append(node);
     });
-
-    $("#removeRow").click(function () {
-        $("#addNewRowHere").find("tr").eq(index).remove();
-    })
 });
 
+$("#removeRow").click(function () {
+    $("#addNewRowHere").find("tr").eq(index).remove();
+})
 $(document).on('click', '.removeBtn', function () {
     index = $(this).closest("tr").index()
 })
-
