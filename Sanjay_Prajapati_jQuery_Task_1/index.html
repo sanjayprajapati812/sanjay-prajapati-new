@@ -13,7 +13,11 @@
 
 <body>
     <div style="background: #adb5bd" class="container py-1 pb-4 px-5">
-        <h2 class="text-center mt-1">Students Detail</h2>
+        <div class="d-flex justify-content-around">
+            <div><h2 class="text-center fs-1 mt-1">Students Detail</h2></div>
+            <div class='timer' data-minutes-left=10></div>
+        </div>
+        
         <div class="row mt-4">
             <div class="col">
                 <button id="addNewBtn" type="button" class="btn btn-primary me-3 btnResponsive">
@@ -42,7 +46,7 @@
                             <tr isAccepted>
                                 <th data-label="No." scope="row"></th>
                                 <td data-label="Name">
-                                    <input type="text" class="form-control" placeholder="Enter Name" required />
+                                    <input type="text" class="form-control" placeholder="Enter Name" />
                                     <div class="invalid"></div>
                                 </td>
                                 <td data-label="subject">
@@ -213,7 +217,7 @@
 
 
 
-    <div id="container2" style="background: #adb5bd" class="container mt-3 py-1 px-5">
+    <div id="container2" style="display:none; background: #adb5bd" class="container mt-3 py-1 px-5">
         <div class="row mt-5">
             <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12" id="search">
                 <input id="searchInput" type="text" class="form-control d-inline"
@@ -296,28 +300,24 @@
         </div>
     </div>
 
-
-
-
-
-    <form id="myform">
-        <input type="text" name="field1" /><br>
-        <input type="text" name="field2" /><br>
-
-        <input type="text" name="field1" /><br>
-        <input type="text" name="field2" /><br>
-
-        <input type="text" name="field1" /><br>
-        <input type="text" name="field2" /><br>
-
-        <input type="submit" />
-    </form>
-
-
+    <div class="modal fade" id="timerModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Time Over</h5>
+                </div>
+                <div class="modal-body">Are you sure to want continue</div>
+                <div class="modal-footer">
+                    <button id="okBtn" type="button" class="btn btn-primary ok" data-bs-dismiss="modal">
+                        Ok
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 <script src="./jquery/jquery-3.6.3.min.js"></script>
-<script src="./jquery/jquery.validate.js"></script>
 <script src="./bootstrap/bootstrap.bundle.min.js"></script>
 <script src="./js/index.js"></script>
 

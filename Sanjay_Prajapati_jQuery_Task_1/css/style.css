@@ -1,0 +1,190 @@
+body {
+  counter-reset: Serial;
+}
+
+div {
+  counter-reset: SerialSub;
+}
+
+.invalid {
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: .875em;
+  color: #dc3545;
+}
+
+.container {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.positionFixed {
+  position: fixed;
+  top: 10px;
+  max-width: 500px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: rgb(94, 177, 35);
+  color: white;
+
+}
+
+.inputTable tbody tr th:first-child:before {
+  counter-increment: Serial;
+  content: counter(Serial);
+}
+
+.reportTbl tbody tr td:first-child:before {
+  counter-increment: SerialSub;
+  content: counter(SerialSub);
+}
+
+.error {
+  border-color: #dc3545;
+  box-shadow: 0.5px 0.5px 0px 0px #dc3545;
+}
+
+.search {
+  position: relative;
+}
+
+.search input {
+  height: 60px;
+  text-indent: 25px;
+  border: 2px solid #d6d4d4;
+}
+
+
+.search input:focus {
+
+  box-shadow: none;
+  border: 2px solid blue;
+
+
+}
+
+.btnPF {
+  width: 50%;
+  margin-left: auto;
+}
+
+.sortDiv {
+  display: none;
+}
+
+.d_flex {
+  display: flex;
+}
+
+.btn {
+  border-width: 1px;
+  font-weight: 500;
+}
+
+@media screen and (max-width: 1000px) {
+  .container {
+    padding: 10px !important;
+  }
+}
+
+@media screen and (max-width: 800px) {
+
+  body {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+
+  .container {
+    padding: 10px !important;
+    max-width: 400px !important;
+  }
+
+  .btnResponsive {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-inline: 0px !important;
+  }
+
+  .margin_top {
+    margin-top: 10px;
+  }
+
+  .margin_top2 {
+    margin-top: 30px;
+  }
+
+
+  .btnPF {
+    width: 100% !important;
+    margin-left: auto;
+  }
+
+  .inputTable thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  .inputTable tr {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    margin-bottom: 35px;
+  }
+
+  .inputTable th {
+    border-bottom: 1px solid #ddd;
+    display: block;
+  }
+
+  .inputTable td {
+    border-bottom: 3px solid #cfe2ff;
+    ;
+    display: block;
+    font-size: .8em;
+  }
+
+  .inputTable td::before {
+
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  .inputTable td:last-child {
+    border-bottom: 0;
+    display: block;
+    min-height: 40px;
+  }
+
+  .d_flex {
+    padding-top: 10px !important;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .positionFixed {
+    width: 92%;
+    font-size: 14px;
+    margin: auto;
+  }
+}
+
+.timer {
+  max-width: 283px;
+  display: flex;
+  font-size: 46px;
+  font-weight: 700;
+  justify-content: center;
+  border-radius: 56px;
+  color: white;
+  padding-inline: 50px;
+  background-color: #212529;
+  padding-bottom: 7px;
+}
