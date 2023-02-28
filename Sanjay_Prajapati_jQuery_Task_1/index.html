@@ -14,10 +14,12 @@
 <body>
     <div style="background: #adb5bd" class="container py-1 pb-4 px-5">
         <div class="d-flex justify-content-around">
-            <div><h2 class="text-center fs-1 mt-1">Students Detail</h2></div>
-            <div class='timer' data-minutes-left=10></div>
+            <div>
+                <h2 class="text-center fs-1 mt-1">Students Detail</h2>
+            </div>
+            <div class='timer'></div>
         </div>
-        
+
         <div class="row mt-4">
             <div class="col">
                 <button id="addNewBtn" type="button" class="btn btn-primary me-3 btnResponsive">
@@ -29,7 +31,7 @@
             </div>
         </div>
         <div class="row mt-4">
-            <div class="col table-responsive">
+            <div class="col table-responsive tblAni">
                 <form class="needs-validation" id="tableFrom" novalidate>
                     <table id="inputDataTable" class="inputTable table table-bordered table-hover table-primary">
                         <thead>
@@ -209,14 +211,6 @@
 
 
 
-
-
-
-
-
-
-
-
     <div id="container2" style="display:none; background: #adb5bd" class="container mt-3 py-1 px-5">
         <div class="row mt-5">
             <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12" id="search">
@@ -235,7 +229,7 @@
             </div>
         </div>
         <div class="row mt-1">
-            <div class="col table-responsive" id="addTable">
+            <div class="col table-responsive tblAni" id="addTable">
                 <table class="table table-bordered table-hover reportTbl" id="reportTable">
                     <thead>
                         <tr class="table-dark">
@@ -270,13 +264,6 @@
             <div class="col table-responsive" id="addPerTable"></div>
         </div>
     </div>
-
-
-
-
-
-
-
 
 
 

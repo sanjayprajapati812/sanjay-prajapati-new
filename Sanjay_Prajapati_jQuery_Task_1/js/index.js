@@ -2,7 +2,9 @@ var array = []
 var index;
 var regName = /^[a-zA-Z ]*$/;
 var regNumber = /^(\d{1,2}|100)$/;
+var node = $("#addNewRowHere").find('tr').eq(0).prop('outerHTML').replace("d-none", "btn btn-danger removeBtn d_flex margin_top2");
 
+//get data from input feild and save to array of objects...
 function getData() {
     array = []
     $("#addNewRowHere > tr").each(function () {
@@ -18,8 +20,8 @@ function getData() {
     return array
 }
 
+//add and remove row...
 $("#addNewBtn").click(function () {
-    let node = $("#addNewRowHere").find('tr').eq(0).prop('outerHTML').replace("d-none", "btn btn-danger removeBtn d_flex margin_top2");
     $("#addNewRowHere").append(node);
 });
 
@@ -32,6 +34,7 @@ $(document).on('click', '.removeBtn', function () {
     index = $(this).closest("tr").index();
 })
 
+//add random data...
 $("#addRandom").on('click', function () {
     const randomArray = [
         { "name": "Nestor", "subject": "BME", "marks": 62 },
@@ -56,6 +59,7 @@ $("#addRandom").on('click', function () {
     validateTable()
 })
 
+//generate Table.....
 $("#subBtn").on('click', function () {
     if (!validateTable()) {
         $("#mainErrShow").html("please enter all detail correct")
@@ -71,6 +75,7 @@ $("#subBtn").on('click', function () {
     }
 })
 
+// Validation.....
 function showNameError(tr, i, validate) {
     if (!regName.test(tr.find('td').eq(i).children("input:first-child").val()) || !(tr.find('td').eq(i).children("input:first-child").val().trim())) {
         tr.find('td').eq(i).children("input:first-child").attr("class", "form-control error")
@@ -108,6 +113,9 @@ function validateTable() {
     return validate;
 }
 
+//Timer....
+$('.timer').attr("data-minutes-left", 10)
+
 $('.timer').startTimer({
     onComplete: function () {
         $('#timerModal').modal({
@@ -115,15 +123,20 @@ $('.timer').startTimer({
             keyboard: false
         })
         $('#timerModal').modal('show');
+        $('body').addClass('background')
+        $('.container').addClass("animation")
 
         $("#timerModal").on("click", "#okBtn", function () {
             $('.timer').empty()
             $('.timer').startTimer()
+            $('body').removeClass('background')
+            $('.container').removeClass("animation")
         })
     }
 });
 
-$(document).on('click','.btnPF', function () {
+//Accept and reject button....
+$(document).on('click', '.btnPF', function () {
     if ($(this).attr('class') == "btn btn-outline-success me-2 btnPF") {
         $(this).attr('class', 'btn btn-success me-2 btnPF')
         $(this).next().attr('class', 'btn btn-outline-danger btnPF')
@@ -134,5 +147,38 @@ $(document).on('click','.btnPF', function () {
         $(this).prev().attr('class', 'btn btn-outline-success me-2 btnPF')
         $(this).closest('tr').attr('isAccepted', 'no')
     }
-
 })
+
+//sorting....
+function comparer(index) {
+    return function (a, b) {
+        var valA = getCellValue(a, index), valB = getCellValue(b, index)
+        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
+    }
+}
+function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
+
+$('.rounded-circle').click(function () {
+    var table = $(this).parents('table').eq(0)
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).parents('th').index()))
+    $(this).find("i").attr('class', 'bi bi-sort-alpha-down-alt')
+    this.asc = !this.asc
+    if (!this.asc) { rows = rows.reverse(); $(this).find("i").attr('class', 'bi bi-sort-alpha-down') }
+    for (var i = 0; i < rows.length; i++) { table.append(rows[i]) }
+})
+
+//searching...
+$("#searchInput").on("keyup", function () {
+    let inputStr = $(this).val().toUpperCase();
+    $("#reportTblBody>tr").each(function () {
+        let td1Str = $(this).find("td").eq(1).text().toUpperCase();
+        let td2Str = $(this).find("td").eq(2).text().toUpperCase();
+        let td3Str = $(this).find("td").eq(4).text().toUpperCase();
+        if (td1Str.includes(inputStr) || td2Str.includes(inputStr) || td3Str.includes(inputStr)) {
+            $(this).show();
+        }
+        else {
+            $(this).hide();
+        }
+    });
+});

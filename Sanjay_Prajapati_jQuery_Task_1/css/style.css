@@ -180,11 +180,30 @@ div {
   max-width: 283px;
   display: flex;
   font-size: 46px;
-  font-weight: 700;
+  font-weight: 500;
   justify-content: center;
   border-radius: 56px;
   color: white;
   padding-inline: 50px;
   background-color: #212529;
   padding-bottom: 7px;
+}
+
+.background {
+  background: url("../4ddc8577d3809faa19f3fbefe79f514e.gif");
+}
+
+.animation {
+  animation: 2s ease-out 0s 1 FadeIn;
+  background-color: transparent !important;
+}
+
+@keyframes FadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
