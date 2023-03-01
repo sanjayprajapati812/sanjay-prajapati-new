@@ -261,7 +261,24 @@
         </div>
 
         <div class="row mt-1">
-            <div class="col table-responsive" id="addPerTable"></div>
+            <div class="col table-responsive" id="">
+                <table class="table table-bordered table-hover reportTbl" id="percentageTbl">
+                    <thead>
+                        <tr class="table-dark">
+                            <th scope="col">No</th>
+                            <th style="min-width: 142px" scope="col">
+                                Name
+                                <button class="rounded-circle border-0">
+                                    <i class="bi bi-sort-alpha-down"></i>
+                                </button>
+                            </th>
+                            <th scope="col">Percentage</th>
+                            <th scope="col">Final Result</th>
+                        </tr>
+                    </thead>
+                    <tbody id="percentageTblBody"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery Task-3</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="fs-3">
+            Create Table You Want
+        </div>
+        <div class="input-group mt-5 mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Enter number of row</span>
+            </div>
+            <input id="inputRow" type="number" class="form-control" onkeypress="return /[0-9]/i.test(event.key)"
+                min="1">
+        </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="">Enter number of colulmn</span>
+            </div>
+            <input id="inputCol" type="number" class="form-control" onkeypress="return /[0-9]/i.test(event.key)"
+                min="1">
+        </div>
+        <button id="createTable" type="button" class="btn btn-secondary">Create Table</button>
+        <div class="table-responsive">
+            <table class="table table-dark table-hover table-bordered table-striped mt-5">
+                <tbody id="tbl">
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</body>
+<script src="./bootstrap/bootstrap.bundle.min.js"></script>
+<script src="./jquery/jquery-3.6.3.min.js"></script>
+<script src="./index.js"></script>
+
+</html>

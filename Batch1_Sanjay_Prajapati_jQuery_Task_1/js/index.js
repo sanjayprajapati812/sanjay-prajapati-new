@@ -4,7 +4,7 @@ var regName = /^[a-zA-Z ]*$/;
 var regNumber = /^(\d{1,2}|100)$/;
 var node = $("#addNewRowHere").find('tr').eq(0).prop('outerHTML').replace("d-none", "btn btn-danger removeBtn d_flex margin_top2");
 
-//get data from input feild and save to array of objects...
+//get data from input feild and save to ARRAY OF OBJECTS...
 function getData() {
     array = []
     $("#addNewRowHere > tr").each(function () {
@@ -57,22 +57,6 @@ $("#addRandom").on('click', function () {
         $(this).find('td').eq(2).children("input:first-child").val(randomArray[n].marks);
     });
     validateTable()
-})
-
-//generate Table.....
-$("#subBtn").on('click', function () {
-    if (!validateTable()) {
-        $("#mainErrShow").html("please enter all detail correct")
-    } else {
-        $("#mainErrShow").html("");
-        $("#container2").show()
-        $("#reportTblBody").html("");
-        getData().forEach((item, index) => {
-            let a = $(`<tr><td></td><td>${item.name}</td><td>${item.subject}</td><td>${item.mark}</td><td>${item.result}</td></tr>`).get(0);
-            item.mark < 33 ? $(a).attr("class", "table-danger") : $(a).attr("class", "table-success");
-            $("#reportTblBody").append(a);
-        })
-    }
 })
 
 // Validation.....
@@ -152,15 +136,15 @@ $(document).on('click', '.btnPF', function () {
 //sorting....
 function comparer(index) {
     return function (a, b) {
-        var valA = getCellValue(a, index), valB = getCellValue(b, index)
+        let valA = getCellValue(a, index), valB = getCellValue(b, index)
         return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB)
     }
 }
 function getCellValue(row, index) { return $(row).children('td').eq(index).text() }
 
 $('.rounded-circle').click(function () {
-    var table = $(this).parents('table').eq(0)
-    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).parents('th').index()))
+    let table = $(this).parents('table').eq(0)
+    let rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).parents('th').index()))
     $(this).find("i").attr('class', 'bi bi-sort-alpha-down-alt')
     this.asc = !this.asc
     if (!this.asc) { rows = rows.reverse(); $(this).find("i").attr('class', 'bi bi-sort-alpha-down') }
@@ -182,3 +166,48 @@ $("#searchInput").on("keyup", function () {
         }
     });
 });
+
+//Persentage Table....
+function findOccTotalMark(arr) {
+    let persentageArray = [];
+    arr.forEach((x) => {
+        if (persentageArray.some((val) => { return val.name.toUpperCase() == x.name.toUpperCase() })) {
+            persentageArray.forEach((k) => {
+                if (k.name.toUpperCase() === x.name.toUpperCase()) {
+                    k["occurence"]++
+                    k["totalMark"] += parseInt(x.mark);
+                }
+            })
+        } else {
+            let a = {};
+            a.name = x.name;
+            a["occurence"] = 1;
+            a["totalMark"] = parseInt(x.mark);
+            persentageArray.push(a);
+        }
+    })
+    return persentageArray;
+}
+
+//generate Report Table and Percentage Table both.....
+$("#subBtn").on('click', function () {
+    if (!validateTable()) {
+        $("#mainErrShow").html("please enter all detail correct")
+    } else {
+        $("#container2").show();
+        $("#mainErrShow").html("");
+        $("#reportTblBody").html("");
+        $("#percentageTblBody").html("");
+        getData().forEach((item) => {
+            let a = $(`<tr><td></td><td>${item.name}</td><td>${item.subject}</td><td>${item.mark}</td><td>${item.result}</td></tr>`).get(0);
+            item.mark < 33 ? $(a).attr("class", "table-danger") : $(a).attr("class", "table-success");
+            $("#reportTblBody").append(a);
+        })
+        findOccTotalMark(getData()).forEach((item) => {
+            let persentage = (parseInt(item.totalMark) / parseInt(item.occurence)).toFixed(2)
+            let a = $(`<tr><td></td><td>${item.name}</td><td>${persentage}%</td><td>${persentage < 33 ? "Fail" : "Pass"}</td></tr>`).get(0);
+            persentage < 33 ? $(a).attr("class", "table-danger") : $(a).attr("class", "table-success");
+            $("#percentageTblBody").append(a);
+        })
+    }
+})
