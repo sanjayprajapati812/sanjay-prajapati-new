@@ -1,4 +1,4 @@
-document.querySelector('button').addEventListener('click', (event) => {
+function saveData() {
     let inputElementCollection = Array.from(document.body.firstElementChild.children).filter((element) => {
         return element instanceof HTMLInputElement;
     })
@@ -9,4 +9,4 @@ document.querySelector('button').addEventListener('click', (event) => {
     })
 
     document.querySelector('tbody').innerHTML = string
-})
+}
