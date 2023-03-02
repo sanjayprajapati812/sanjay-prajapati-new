@@ -21,7 +21,7 @@ $(document).ready(function () {
                 $('table').find('tbody').append(`<tr>
                 <td>${index}</td>
                 ${Object.keys(element).forEach((key) => {
-                    key != 'HTTPS' ? (string += `<td> ${element[key].toString().includes('http') ? "<a href =" + element[key] + ">" + element[key] || "-" + "</a>" : '' + element[key] || '-' + ''}  </td>`) : null
+                    key != 'HTTPS' ? (string += `<td> ${key=="Link" ? "<a href =" + element[key] + ">" + element[key] || "-" + "</a>" : '' + element[key] || '-' + ''}  </td>`) : null
                 })}
                 ${string}
                 </tr>`)
