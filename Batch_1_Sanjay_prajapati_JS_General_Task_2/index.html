@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>General Task 2</title>
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./jQuery/jquery.dataTables.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="container">
+        <button type="button" class="btn btn-primary float-end my-3" data-bs-toggle="modal"
+            data-bs-target="#exampleModal">
+            Add New
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="" class="needs-validation" novalidate>
+                        <div class="modal-body">
+                            <label class="form-label">Enter Name</label>
+                            <input type="text" class="form-control" id="" placeholder="" required>
+
+
+                            <label class="form-label">Enter Age</label>
+                            <input type="number" onkeypress="return /[0-9]/i.test(event.key)" class="form-control"
+                                min="20" max="100" required/>
+
+
+                            <label class="form-label">Enter Designation</label>
+                            <input type="text" class="form-control" id="" placeholder="" required>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button id="save" type="button" class="btn btn-primary"
+                                data-bs-dismiss="modal">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <table id="data-Table">
+
+        </table>
+    </div>
+
+</body>
+<script src="./bootstrap/bootstrap.bundle.min.js"></script>
+<script src="./jQuery/jquery-3.6.3.min.js"></script>
+<script src="./jQuery/jquery.dataTables.js"></script>
+<script src="./index.js"></script>
+
+</html>
