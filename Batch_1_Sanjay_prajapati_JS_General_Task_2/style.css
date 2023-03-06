@@ -29,3 +29,9 @@ table th {
 .dataTables_wrapper .dataTables_filter {
     margin-block: 20px;
 }
+
+.invalid1 {
+    margin-top: 0.25rem;
+    font-size: .875em;
+    color: #dc3545;
+}

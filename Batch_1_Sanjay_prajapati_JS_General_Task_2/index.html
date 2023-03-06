@@ -24,24 +24,24 @@
                         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <form action="" class="needs-validation" novalidate>
+                    <form action="" id="myForm">
                         <div class="modal-body">
                             <label class="form-label">Enter Name</label>
-                            <input type="text" class="form-control" id="" placeholder="" required>
-
+                            <input type="text" class="form-control" id="" placeholder="">
+                            <div class="invalid1" id="nameErr"></div>
 
                             <label class="form-label">Enter Age</label>
                             <input type="number" onkeypress="return /[0-9]/i.test(event.key)" class="form-control"
-                                min="20" max="100" required/>
-
+                                min="20" max="100" />
+                            <div class="invalid1" id="ageErr"></div>
 
                             <label class="form-label">Enter Designation</label>
-                            <input type="text" class="form-control" id="" placeholder="" required>
+                            <input type="text" class="form-control" id="" placeholder="">
+                            <div class="invalid1" id="degErr"></div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button id="save" type="button" class="btn btn-primary"
-                                data-bs-dismiss="modal">Save</button>
+                            <button id="subBtn" type="button" class="btn btn-primary">Save</button>
                         </div>
                     </form>
                 </div>

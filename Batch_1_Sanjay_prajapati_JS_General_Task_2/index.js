@@ -1,4 +1,7 @@
 var id = 1;
+var regName = /^[a-zA-Z ]*$/;
+var regNumber = /^(\d{1,2}|100)$/;
+
 function Employee(id, name, age, designation) {
     this.id = id;
     this.name = name;
@@ -6,13 +9,9 @@ function Employee(id, name, age, designation) {
     this.designation = designation;
 };
 
-$('#data-Table').DataTable({
+var dataTbl = $('#data-Table').DataTable({
     "bPaginate": false,
     "info": false,
-    data: [
-        new Employee(id, "Tiger Nixon", "System Architect", "$3,120", "Edinburgh"),
-        new Employee(id, "Garrett Winters", "Director", "$5,300", "Edinburgh")
-    ],
     columns: [
         {
             data: 'id',
@@ -32,29 +31,42 @@ $('#data-Table').DataTable({
         },
     ],
 });
+function validate() {
+    let flag = true;
+    if (!regName.test($('#myForm').find('input').eq(0).val()) || !($('#myForm').find('input').eq(0).val().trim())) {
+        $('#nameErr').html("*Please enter text only value")
+        flag = false;
+    } else {
+        $('#nameErr').html("")
+    }
+    if (!regNumber.test($('#myForm').find('input').eq(1).val()) || !($('#myForm').find('input').eq(1).val().trim())) {
+        $('#ageErr').html("*Please enter number between 20 to 100")
+        flag = false;
+    } else {
+        $('#ageErr').html("")
+    }
+    if (!regName.test($('#myForm').find('input').eq(2).val()) || !($('#myForm').find('input').eq(2).val().trim())) {
+        $('#degErr').html("*Please enter text only value")
+        flag = false;
+    } else {
+        $('#degErr').html("")
+    }
 
-(function () {
-    'use strict'
+    return flag
+}
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
+var id = 1
 
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-            document.getElementById("save").addEventListener('click', function (event) {
+$('#subBtn').on('click', function () {
+    if (validate()) {
 
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                    $('#myModal').on('data-bs-dismiss', function (e) {
-                        e.preventDefault()
-                    })
-                } else {
-                    event.target.setAttribute("data-bs-dismiss", "modal");
-                }
+        $('#exampleModal').modal('hide')
 
-                form.classList.add('was-validated')
-            }, false)
-        })
-})()
+        dataTbl.row.add(new Employee(id, $('#myForm').find('input').eq(0).val(), $('#myForm').find('input').eq(1).val(), $('#myForm').find('input').eq(2).val())).draw(false);
+
+        $('#myForm').get(0).reset()
+        id++;
+    } else {
+        //$('#exampleModal').modal('hide')
+    }
+})
