@@ -52,13 +52,13 @@ function getReportData() {
   let reportData = document.getElementById("reportTblBody").rows;
   let dataArray = [];
 
-  Array.from(reportData).forEach((tr, rowIndex) => {
+  Array.prototype.forEach.call(reportData, ({ cells }, rowIndex) => {
     let dataObj = new Object();
     dataObj.id = rowIndex + 1;
-    dataObj.name = tr.cells[1].innerText;
-    dataObj.subject = tr.cells[2].innerText;
-    dataObj.mark = tr.cells[3].innerText;
-    dataObj.result = tr.cells[4].innerText;
+    dataObj.name = cells[1].innerText;
+    dataObj.subject = cells[2].innerText;
+    dataObj.mark = cells[3].innerText;
+    dataObj.result = cells[4].innerText;
     dataArray.push(dataObj);
   })
   return dataArray;
@@ -100,7 +100,21 @@ function generateTable(array) {
   })
 }
 
-function sortTable(element, direction) {
+function sortTable(event, element) {
+  let direction = event.target.parentElement.getAttribute('direction')
+  if (direction =='asc'){
+    event.target.parentElement.setAttribute('direction','desc')
+    event.target.setAttribute('class','bi bi-sort-alpha-down-alt')
+  } 
+  if (direction == 'desc'){
+    event.target.parentElement.setAttribute('direction', 'asc')
+    event.target.setAttribute('class','bi bi-sort-alpha-down')
+  }
+  //console.log(direction);
+
+  //event.target.parentElement.setAttribute('direction','desc')
+  //let element = event.target.parentElement.parentElement.innerText.toLowerCase().trim();
+  //console.log(element);
   sortedArray = searchTable().sort((a, b) => {
     let nameA = a[element].toUpperCase();
     let nameB = b[element].toUpperCase();
@@ -118,8 +132,8 @@ function sortTable(element, direction) {
 function searchTable() {
   generateTable(dataNTC)
   let inputStr = document.getElementById("searchInput").value.toUpperCase();
-  let newArray = getReportData().filter(function (el) {
-    return el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr) || el.result.toUpperCase().includes(inputStr)
+  let newArray = getReportData().filter((el)=> {
+    return (el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr) || el.result.toUpperCase().includes(inputStr))
   });
 
   getReportData().forEach((item) => {
