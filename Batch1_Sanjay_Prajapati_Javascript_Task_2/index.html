@@ -233,21 +233,16 @@
               <th scope="col">No</th>
               <th style="min-width: 142px" scope="col">
                 Name
-                <button onclick="sortTable('name','asc')" class="rounded-circle border-0">
+                <button onclick="sortTable(event,'name')" direction="asc" class="rounded-circle border-0">
                   <i class="bi bi-sort-alpha-down"></i>
-                </button>
-                <button onclick="sortTable('name','desc')" class="rounded-circle border-0">
-                  <i class="bi bi-sort-alpha-down-alt"></i>
                 </button>
               </th>
               <th style="min-width: 150px" scope="col">
                 Subject
-                <button onclick="sortTable('subject','asc')" class="rounded-circle border-0">
+                <button onclick="sortTable(event,'subject')" direction="asc" class="rounded-circle border-0">
                   <i class="bi bi-sort-alpha-down"></i>
                 </button>
-                <button onclick="sortTable('subject','desc')" class="rounded-circle border-0">
-                  <i class="bi bi-sort-alpha-down-alt"></i>
-                </button>
+                
               </th>
               <th scope="col">Marks</th>
               <th scope="col">Result</th>
