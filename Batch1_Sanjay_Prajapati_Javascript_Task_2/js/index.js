@@ -136,30 +136,30 @@ function searchTable() {
 function addRandomData() {
 
   const randomArray = [{ "name": "Teodora", "subject": "Maths", "marks": 87 },
-  { "name": "Angelico", "subject": "Engineering", "marks": 38 },
-  { "name": "Rooney", "subject": "Social Science", "marks": 12 },
-  { "name": "Nickola", "subject": "Account", "marks": 66 },
-  { "name": "Chev", "subject": "State", "marks": 43 },
-  { "name": "Elane", "subject": "Gujarati", "marks": 15 },
-  { "name": "Ivy", "subject": "English", "marks": 67 },
-  { "name": "Cyrus", "subject": "Hindi", "marks": 74 },
-  { "name": "Mariellen", "subject": "Data Science", "marks": 14 },
-  { "name": "Meryl", "subject": "Data Structure", "marks": 96 },
-  { "name": "Brena", "subject": "TOC", "marks": 1 },
-  { "name": "Wren", "subject": "IOT", "marks": 44 },
-  { "name": "Stella", "subject": "Mobile App Development", "marks": 17 },
-  { "name": "Nestor", "subject": "BME", "marks": 62 },
-  { "name": "Douglass", "subject": "Arts", "marks": 66 },
-  { "name": "Trina", "subject": "Geoghrapy", "marks": 27 },
-  { "name": "Vernor", "subject": "Physics", "marks": 24 },
-  { "name": "Pierette", "subject": "Chemistry", "marks": 69 },
-  { "name": "Patten", "subject": "Biology", "marks": 54 },
-  { "name": "Peg", "subject": "Microprocessing", "marks": 58 },
-  { "name": "Agata", "subject": "AI", "marks": 32 },
-  { "name": "Sabine", "subject": "Business Development", "marks": 84 },
-  { "name": "Frankie", "subject": "Compiler Design", "marks": 23 },
-  { "name": "Hayward", "subject": "Information Security", "marks": 38 },
-  { "name": "Sherie", "subject": "Big Data", "marks": 76 },
+  { "name": "Angelico", "subject": "Engineering", "marks": 56 },
+  { "name": "Rooney", "subject": "Social Science", "marks": 89 },
+  { "name": "Nickola", "subject": "Account", "marks": 12 },
+  { "name": "Chev", "subject": "State", "marks": 45 },
+  { "name": "Elane", "subject": "Gujarati", "marks": 65 },
+  { "name": "Ivy", "subject": "English", "marks": 78 },
+  { "name": "Cyrus", "subject": "Hindi", "marks": 54 },
+  { "name": "Mariellen", "subject": "Data Science", "marks": 28 },
+  { "name": "Meryl", "subject": "Data Structure", "marks": 92 },
+  { "name": "Brena", "subject": "TOC", "marks": 84 },
+  { "name": "Wren", "subject": "IOT", "marks": 67 },
+  { "name": "Stella", "subject": "Mobile App Development", "marks": 39 },
+  { "name": "Nestor", "subject": "BME", "marks": 34 },
+  { "name": "Douglass", "subject": "Arts", "marks": 24 },
+  { "name": "Trina", "subject": "Geoghrapy", "marks": 76 },
+  { "name": "Vernor", "subject": "Physics", "marks": 46 },
+  { "name": "Pierette", "subject": "Chemistry", "marks": 49 },
+  { "name": "Patten", "subject": "Biology", "marks": 51 },
+  { "name": "Peg", "subject": "Microprocessing", "marks": 62 },
+  { "name": "Agata", "subject": "AI", "marks": 73 },
+  { "name": "Sabine", "subject": "Business Development", "marks": 80 },
+  { "name": "Frankie", "subject": "Compiler Design", "marks": 40 },
+  { "name": "Hayward", "subject": "Information Security", "marks": 20 },
+  { "name": "Sherie", "subject": "Big Data", "marks": 50 },
   ]
 
   const insertInputValues = inputDataTable.rows;
@@ -174,28 +174,30 @@ function addRandomData() {
   checkValidity()
 }
 
+
+
 function findOccTotalMark(arr) {
-  let arr2 = [];
-
-  arr.forEach((x) => {
-
-    if (arr2.some((val) => { return val.name.toUpperCase() == x.name.toUpperCase() })) {
-
-      arr2.forEach((k) => {
-        if (k.name.toUpperCase() === x.name.toUpperCase()) {
-          k["occurence"]++
-          k["totalMark"] += parseInt(x.mark);
-        }
-      })
+  let reducedArray = arr.reduce((array, element) => {
+    let rtnArray;
+    //console.log(array.some((e) => { return e.name === element.name }))
+    if (array.some((e) => { return e.name.toUpperCase() === element.name.toUpperCase() })) {
+         current = array.find((e) => { return e.name.toUpperCase() == element.name.toUpperCase() })
+         current.totmrk += parseInt(element.mark)
+         current.occ++
+         rtnArray = [
+              ...array
+         ]
     } else {
-      let a = {};
-      a.name = x.name;
-      a["occurence"] = 1;
-      a["totalMark"] = parseInt(x.mark);
-      arr2.push(a);
+         rtnArray = [
+              ...array,
+              { name: element.name, totmrk: parseInt(element.mark), occ: 1 }
+         ]
     }
-  })
-  return arr2;
+    return rtnArray
+}, [])
+
+//console.log(reducedArray);
+return reducedArray;
 }
 
 function generatePersentageTable(data) {
@@ -206,15 +208,15 @@ function generatePersentageTable(data) {
   <th scope="col">Name </th>
   <th scope="col">Percentage</th><th scope="col">Final Result</th></thead><tbody></tbody>`;
 
-  data.forEach((element) => {
+  data.forEach(({name,totmrk,occ}) => {
 
-    let Persentage = (parseInt(element.totalMark) / parseInt(element.occurence));
+    let Persentage = (parseInt(totmrk) / parseInt(occ));
 
     const curRow = document.createElement("tr");
     tableNode.children[1].appendChild(curRow);
     curRow.insertCell(0);
     let tdNodeName = curRow.insertCell(1);
-    tdNodeName.innerText = element.name;
+    tdNodeName.innerText = name;
     let tdNodePersentage = curRow.insertCell(2);
     tdNodePersentage.innerText = Persentage.toFixed(2) + "%"
 
@@ -303,6 +305,10 @@ subBtn.addEventListener('click', function () {
     container2.style.display = "none"
     mainErrShow.innerHTML = "*Please enter all correct detail to show Report";
   } else {
+
+    //let perArray = getData().groupBy((element) => element.name)
+    //console.log(perArray);
+
     container2.style.display = "block"
     mainErrShow.innerHTML = "";
     generateTable(getData(data));
