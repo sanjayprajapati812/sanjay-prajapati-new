@@ -1,0 +1,51 @@
+.subDes {
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 7px;
+    margin-bottom: 15px;
+}
+
+#candidateTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+}
+
+#candidateTable td,
+#candidateTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#candidateTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#candidateTable tr:hover {
+    background-color: #ddd;
+}
+
+#candidateTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #141411;
+    color: white;
+}
+
+
+.subTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin-inline-start: 50px;
+}
+
+.subTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #6e6e69 !important;
+    color: white;
+}

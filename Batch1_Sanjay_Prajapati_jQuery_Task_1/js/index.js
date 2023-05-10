@@ -98,7 +98,7 @@ function validateTable() {
 }
 
 //Timer....
-$('.timer').attr("data-minutes-left", 10)
+$('.timer').attr("data-minutes-left", 0.1)
 
 $('.timer').startTimer({
     onComplete: function () {

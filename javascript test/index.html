@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javacript Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <div class="container">
+        <button class="btn btn-primary" id="openModal" data-bs-target="#patientModal" data-bs-toggle="modal">Add
+            New</button>
+        <table id="patientTable"></table>
+
+    </div>
+    <div class="modal fade" id="patientModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="" id="patientForm" class="patientForm" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="form-label">Name</label>
+                            <input type="text" name="name" pattern="[A-Za-z ]{1,20}" class="form-control" value="Sanjay"
+                                required>
+                            <div class="invalid-feedback">please enter text only value</div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="" class="form-label">DOB</label>
+                            <input type="date" name="dob" class="form-control" max="2008-01-01" value="2008-01-01"
+                                required>
+                            <div class="invalid-feedback">plese enter valid date</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Zender</label><br>
+                            <label for="">Male</label>
+                            <input type="radio" name="gender" required checked>
+                            <label for="">Female</label>
+                            <input type="radio" name="gender" required>
+                            <div class="invalid-feedback">Please select gender</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Contact Number</label>
+                            <input type="text" name="contact" pattern="[0-9]{10}" class="form-control"
+                                value="4545787874" required>
+                            <div class="invalid-feedback">please enter valid Mobail Number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Country</label>
+                            <select class="form-control" name="country" required>
+                            </select>
+                            <div class="invalid-feedback">please enter valid Mobail Number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">States</label>
+                            <select class="form-control" name="state" required>
+                            </select>
+                            <div class="invalid-feedback">please enter valid Mobail Number</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">City</label>
+                            <select class="form-control" name="city" required>
+                            </select>
+                            <div class="invalid-feedback">please enter valid Mobail Number</div>
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="deseaseModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="" id="deseageForm" class="need-validation" novalidate>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="" class="form-label">Desease Name</label>
+                            <input type="text" name="name" pattern="[A-Za-z ]{1,20}" class="form-control" value="Sanjay"
+                                required>
+                            <div class="invalid-feedback">please enter text only value</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Medicine Name</label>
+                            <input type="text" name="medicine" pattern="[A-Za-z0-9 ]{1,20}" class="form-control" value="dolo600" required>
+                            <div class="invalid-feedback">please enter text only value</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Price</label>
+                            <input type="number" name="price" pattern="[0-9]" class="form-control" value="200" required>
+                            <div class="invalid-feedback">please enter valid</div>
+                        </div>
+                        <div class="form-group">
+                            <label for="" class="form-label">Quentity</label>
+                            <input type="number" name="qty" pattern="[0-9]" class="form-control" value="3" required>
+                            <div class="invalid-feedback">please enter valid</div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">close</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.js" integrity="sha256-a9jBBRygX1Bh5lt8GZjXDzyOB+bWve9EiO7tROUtj/E="
+    crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
+<script src="./index.js"></script>
+
+</html>
