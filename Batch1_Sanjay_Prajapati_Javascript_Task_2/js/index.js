@@ -102,13 +102,13 @@ function generateTable(array) {
 
 function sortTable(event, element) {
   let direction = event.target.parentElement.getAttribute('direction')
-  if (direction =='asc'){
-    event.target.parentElement.setAttribute('direction','desc')
-    event.target.setAttribute('class','bi bi-sort-alpha-down-alt')
-  } 
-  if (direction == 'desc'){
+  if (direction == 'asc') {
+    event.target.parentElement.setAttribute('direction', 'desc')
+    event.target.setAttribute('class', 'bi bi-sort-alpha-down-alt')
+  }
+  if (direction == 'desc') {
     event.target.parentElement.setAttribute('direction', 'asc')
-    event.target.setAttribute('class','bi bi-sort-alpha-down')
+    event.target.setAttribute('class', 'bi bi-sort-alpha-down')
   }
   //console.log(direction);
 
@@ -132,7 +132,7 @@ function sortTable(event, element) {
 function searchTable() {
   generateTable(dataNTC)
   let inputStr = document.getElementById("searchInput").value.toUpperCase();
-  let newArray = getReportData().filter((el)=> {
+  let newArray = getReportData().filter((el) => {
     return (el.name.toUpperCase().includes(inputStr) || el.subject.toUpperCase().includes(inputStr) || el.result.toUpperCase().includes(inputStr))
   });
 
@@ -192,26 +192,18 @@ function addRandomData() {
 
 function findOccTotalMark(arr) {
   let reducedArray = arr.reduce((array, element) => {
-    let rtnArray;
-    //console.log(array.some((e) => { return e.name === element.name }))
     if (array.some((e) => { return e.name.toUpperCase() === element.name.toUpperCase() })) {
-         current = array.find((e) => { return e.name.toUpperCase() == element.name.toUpperCase() })
-         current.totmrk += parseInt(element.mark)
-         current.occ++
-         rtnArray = [
-              ...array
-         ]
+      current = array.find((e) => { return e.name.toUpperCase() == element.name.toUpperCase() })
+      current.totmrk += parseInt(element.mark)
+      current.occ++
     } else {
-         rtnArray = [
-              ...array,
-              { name: element.name, totmrk: parseInt(element.mark), occ: 1 }
-         ]
+      array.push({ name: element.name, totmrk: parseInt(element.mark), occ: 1 })
     }
-    return rtnArray
-}, [])
+    return array
+  }, [])
 
-//console.log(reducedArray);
-return reducedArray;
+  //console.log(reducedArray);
+  return reducedArray;
 }
 
 function generatePersentageTable(data) {
@@ -222,7 +214,7 @@ function generatePersentageTable(data) {
   <th scope="col">Name </th>
   <th scope="col">Percentage</th><th scope="col">Final Result</th></thead><tbody></tbody>`;
 
-  data.forEach(({name,totmrk,occ}) => {
+  data.forEach(({ name, totmrk, occ }) => {
 
     let Persentage = (parseInt(totmrk) / parseInt(occ));
 
